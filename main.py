@@ -1,34 +1,28 @@
-from src.automation import DiceAutomation
-from src.utils.webdriver_setup import setup_driver
-from config import CREDENTIALS, SEARCH_SETTINGS
+import argparse
+
+from src.config_manager import load_config
+from src.runner import run_automation
+
 
 def main():
-    driver = None
-    try:
-        # Setup WebDriver
-        driver, wait = setup_driver()
-        
-        # Create automation instance
-        automation = DiceAutomation(
-            driver=driver,
-            wait=wait,
-            username=CREDENTIALS["username"],
-            password=CREDENTIALS["password"],
-            keyword=SEARCH_SETTINGS["keyword"],
-            max_applications=SEARCH_SETTINGS["max_applications"]
-        )
-        
-        # Run the automation
-        automation.run()
-        
-        print("\nPress Enter to close the browser...")
-        input()
-        
-    except Exception as e:
-        print(f"\nScript failed with error: {str(e)}")
-    finally:
-        if driver:
-            driver.quit()
+    parser = argparse.ArgumentParser(description="Dice job automation launcher")
+    parser.add_argument(
+        "--run",
+        action="store_true",
+        help="Run the automation immediately using config.py instead of opening the UI.",
+    )
+    args = parser.parse_args()
+
+    if args.run:
+        try:
+            run_automation(load_config())
+        except Exception as e:
+            print(f"\nScript failed with error: {str(e)}")
+        return
+
+    from src.ui import launch_ui
+
+    launch_ui()
 
 if __name__ == "__main__":
     main()
