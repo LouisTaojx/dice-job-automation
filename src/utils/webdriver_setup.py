@@ -11,5 +11,5 @@ def setup_driver():
     options.add_experimental_option('useAutomationExtension', False)
     
     driver = webdriver.Chrome(options=options)
-    wait = WebDriverWait(driver, 20)
+    wait = WebDriverWait(driver, 40)
     return driver, wait

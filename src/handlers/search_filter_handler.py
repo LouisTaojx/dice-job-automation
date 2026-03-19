@@ -9,6 +9,65 @@ class SearchAndFilter:
         self.driver = driver
         self.wait = wait
 
+    def _wait_for_search_input(self, timeout=None):
+        locators = [
+            (By.CSS_SELECTOR, "input#typeaheadInput[data-cy='typeahead-input']"),
+            (By.CSS_SELECTOR, "input[data-cy='typeahead-input']"),
+            (By.CSS_SELECTOR, "input[placeholder='Job title, Keywords, Company']"),
+            (By.CSS_SELECTOR, "input[name='q']"),
+            (
+                By.XPATH,
+                "//input[contains(translate(@placeholder, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'job title')]",
+            ),
+            (
+                By.XPATH,
+                "//input[contains(translate(@placeholder, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'keywords')]",
+            ),
+        ]
+        active_wait = self.wait if timeout is None else type(self.wait)(self.driver, timeout)
+        return active_wait.until(lambda driver: self._find_first_displayed_element(locators))
+
+    def _navigate_to_jobs_via_shadow_dom(self):
+        return self.driver.execute_script(
+            """
+            const header = document.querySelector('dhi-seds-nav-header');
+            if (!header || !header.shadowRoot) {
+                return false;
+            }
+
+            const technologist = header.shadowRoot.querySelector('dhi-seds-nav-header-technologist');
+            if (!technologist || !technologist.shadowRoot) {
+                return false;
+            }
+
+            const display = technologist.shadowRoot.querySelector('dhi-seds-nav-header-display');
+            if (!display || !display.shadowRoot) {
+                return false;
+            }
+
+            const searchLink = display.shadowRoot.querySelector('a[href*="/jobs"]');
+            if (!searchLink) {
+                return false;
+            }
+
+            searchLink.click();
+            return true;
+            """
+        )
+
+    def _search_debug_summary(self):
+        try:
+            body_text = self.driver.find_element(By.TAG_NAME, "body").text.strip()
+        except Exception:
+            body_text = ""
+
+        snippet = " ".join(body_text.split())[:300] if body_text else "Unavailable"
+        return (
+            f"Current URL: {self.driver.current_url}\n"
+            f"Page title: {self.driver.title}\n"
+            f"Visible text snippet: {snippet}"
+        )
+
     def _find_first_displayed_element(self, locators):
         for by, value in locators:
             try:
@@ -90,7 +149,7 @@ class SearchAndFilter:
 
         if result == "clicked":
             print(f"{filter_name} filter applied")
-            time.sleep(2)
+            time.sleep(1)
             return True
 
         return False
@@ -108,7 +167,7 @@ class SearchAndFilter:
             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
             self.driver.execute_script("arguments[0].click();", element)
             print(f"{filter_name} filter applied")
-            time.sleep(2)
+            time.sleep(1)
             return True
         except Exception:
             return self._click_filter_with_script(filter_name, search_text)
@@ -120,62 +179,38 @@ class SearchAndFilter:
 
         try:
             try:
-                search_input = self.wait.until(EC.presence_of_element_located((
-                    By.CSS_SELECTOR,
-                    "input[placeholder='Job title, Keywords, Company']"
-                )))
+                search_input = self._wait_for_search_input(timeout=15)
                 print("Search box found directly")
             except Exception:
                 print("Search box not immediately visible")
                 try:
                     print("Navigating to jobs page...")
                     self.driver.get("https://www.dice.com/jobs")
+                    self.wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
                     time.sleep(3)
 
                     print("Waiting for search box to appear...")
-                    search_input = self.wait.until(EC.presence_of_element_located((
-                        By.CSS_SELECTOR,
-                        "input#typeaheadInput[data-cy='typeahead-input']"
-                    )))
+                    search_input = self._wait_for_search_input(timeout=20)
                     print("Search box found after navigation")
 
                 except Exception:
                     print("Trying shadow DOM navigation...")
-                    self.driver.execute_script("""
-                        const header = document.querySelector('dhi-seds-nav-header');
-                        const shadowRoot1 = header.shadowRoot;
-                        const technologist = shadowRoot1.querySelector('dhi-seds-nav-header-technologist');
-                        const shadowRoot2 = technologist.shadowRoot;
-                        const display = shadowRoot2.querySelector('dhi-seds-nav-header-display');
-                        const shadowRoot3 = display.shadowRoot;
-                        const searchLink = shadowRoot3.querySelector('a[href*="/jobs"]');
-                        if (searchLink) {
-                            searchLink.click();
-                            return true;
-                        }
-                        return false;
-                    """)
+                    clicked_search_link = self._navigate_to_jobs_via_shadow_dom()
+                    if not clicked_search_link:
+                        raise Exception("Search Jobs link was not available in the header shadow DOM")
 
                     print("Clicked Search Jobs link, waiting for page load...")
                     time.sleep(5)
-
-                    search_input = self.wait.until(EC.presence_of_element_located((
-                        By.CSS_SELECTOR,
-                        "input#typeaheadInput[data-cy='typeahead-input']"
-                    )))
+                    search_input = self._wait_for_search_input(timeout=20)
 
             if search_input:
                 print(f"Entering search keyword: {keyword}")
                 search_input.clear()
-                time.sleep(1)
+                search_input.send_keys(keyword)
 
-                for char in keyword:
-                    search_input.send_keys(char)
-                    time.sleep(0.1)
-
-                time.sleep(1)
+                time.sleep(0.5)
                 search_input.send_keys(Keys.RETURN)
-                time.sleep(3)
+                time.sleep(1.5)
 
                 try:
                     self.wait.until(EC.presence_of_element_located((
@@ -193,6 +228,7 @@ class SearchAndFilter:
 
         except Exception as e:
             print(f"Error during search: {str(e)}")
+            print(self._search_debug_summary())
             return False
 
     def apply_filters(self):
