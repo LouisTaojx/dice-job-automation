@@ -81,17 +81,31 @@ class DiceAutomation:
     def _collect_visible_job_listings(self):
         return self.driver.execute_script(
             """
-            const anchors = Array.from(document.querySelectorAll("a"));
+            const anchors = Array.from(document.querySelectorAll("a[data-cy='card-title-link'], a.card-title-link, a[href*='/job-detail/'], a[href*='/jobs/'], a[href*='/job/']"));
             const seen = new Set();
             const jobs = [];
 
             for (const anchor of anchors) {
                 const href = anchor.href || "";
-                const rawText = (anchor.innerText || anchor.textContent || anchor.getAttribute("aria-label") || "").trim();
+                const parentCard = anchor.closest("article, li, [data-cy='search-result-card'], .card, .search-card");
+                const titleNode = parentCard
+                    ? parentCard.querySelector("a[data-cy='card-title-link'], a.card-title-link, h2, h3")
+                    : null;
+                let rawText = (anchor.innerText || anchor.textContent || anchor.getAttribute("aria-label") || "").trim();
+                if (titleNode) {
+                    rawText = (titleNode.innerText || titleNode.textContent || rawText).trim();
+                }
                 const isVisible = Boolean(anchor.offsetParent || anchor.getClientRects().length);
-                const looksLikeJobLink = /\\/jobs\\//i.test(href) || /\\/job\\//i.test(href) || /\\/job-detail\\//i.test(href);
+                const looksLikeJobLink = /\\/job-detail\\//i.test(href) || /\\/jobs\\//i.test(href) || /\\/job\\//i.test(href);
+                const lowerText = rawText.toLowerCase();
 
-                if (!isVisible || !looksLikeJobLink || rawText.length < 6 || seen.has(href)) {
+                if (
+                    !isVisible
+                    || !looksLikeJobLink
+                    || rawText.length < 8
+                    || ["easy apply", "apply", "quick apply", "view details"].includes(lowerText)
+                    || seen.has(href)
+                ) {
                     continue;
                 }
 

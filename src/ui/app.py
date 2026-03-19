@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from contextlib import redirect_stderr, redirect_stdout
 import queue
 import threading
 import tkinter as tk
@@ -13,6 +12,7 @@ from ..config_manager import (
     load_config,
     save_config,
 )
+from ..log_utils import get_log_path, mirrored_output
 from ..runner import run_automation
 
 
@@ -319,6 +319,7 @@ class AutomationApp(tk.Tk):
 
         self._clear_log()
         self._append_log(f"Saved settings to {get_config_path()}\n")
+        self._append_log(f"Writing logs to {get_log_path()}\n")
         self._append_log("Launching browser automation...\n\n")
         self.is_running = True
         self._set_controls_enabled(False)
@@ -333,14 +334,14 @@ class AutomationApp(tk.Tk):
 
     def _run_automation_worker(self, payload: dict[str, dict[str, Any]]) -> None:
         writer = _QueueWriter(self.log_queue)
-        try:
-            with redirect_stdout(writer), redirect_stderr(writer):
+        with mirrored_output(writer, include_console=False):
+            try:
                 run_automation(payload)
                 print("\nAutomation finished.")
-        except Exception as exc:
-            self.log_queue.put(f"\nAutomation failed: {exc}\n")
-            self._queue_finish(False)
-            return
+            except Exception as exc:
+                print(f"\nAutomation failed: {exc}\n")
+                self._queue_finish(False)
+                return
 
         self._queue_finish(True)
 

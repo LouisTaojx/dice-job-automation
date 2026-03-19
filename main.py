@@ -1,6 +1,7 @@
 import argparse
 
 from src.config_manager import load_config
+from src.log_utils import get_log_path, mirrored_output
 from src.runner import run_automation
 
 
@@ -14,10 +15,12 @@ def main():
     args = parser.parse_args()
 
     if args.run:
-        try:
-            run_automation(load_config())
-        except Exception as e:
-            print(f"\nScript failed with error: {str(e)}")
+        with mirrored_output():
+            try:
+                print(f"Writing logs to {get_log_path()}")
+                run_automation(load_config())
+            except Exception as e:
+                print(f"\nScript failed with error: {str(e)}")
         return
 
     from src.ui import launch_ui

@@ -157,8 +157,12 @@ class SearchAndFilter:
     def _apply_filter(self, filter_name, search_text, locators):
         print(f"Looking for {filter_name} filter...")
 
+        if self._click_filter_with_script(filter_name, search_text):
+            return True
+
         try:
-            element = self.wait.until(lambda driver: self._find_first_displayed_element(locators))
+            quick_wait = type(self.wait)(self.driver, 6)
+            element = quick_wait.until(lambda driver: self._find_first_displayed_element(locators))
 
             if self._is_filter_selected(element):
                 print(f"{filter_name} filter already selected")
