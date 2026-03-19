@@ -1,0 +1,89 @@
+
+=== Run started 2026-03-18 19:44:11 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings...
+
+Trying job 1 of 21: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Clicked Easy Apply button from regular DOM
+Looking for Next button...
+Clicking Next button...
+Looking for Submit button...
+Could not process job: Java Developer | https://www.dice.com/job-detail/653264e2-0990-4ad7-828e-60c932ea85ae | Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc9273ae]
+	chromedriver!(No symbol) [0x7ff7bc9276bc]
+	chromedriver!(No symbol) [0x7ff7bc977a57]
+	chromedriver!(No symbol) [0x7ff7bc9745af]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+Closing job tab...
+
+Trying job 2 of 21: Java Developer (W2 Citizens Only)
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Clicked Easy Apply button from regular DOM
+Looking for Next button...
+Clicking Next button...
+Looking for Submit button...
+Could not process job: Java Developer (W2 Citizens Only) | https://www.dice.com/job-detail/d307a42c-9a8e-4545-a379-d3e87cbac3f1 | Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc9273ae]
+	chromedriver!(No symbol) [0x7ff7bc9276bc]
+	chromedriver!(No symbol) [0x7ff7bc977a57]
+	chromedriver!(No symbol) [0x7ff7bc9745af]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+Closing job tab...
+
+Trying job 3 of 21: Java Developer - Hybrid project in Albany NY - Only need local candidates
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Clicked Easy Apply button from regular DOM
+Looking for Next button...
+Clicking Next button...
+Looking for Submit button...
