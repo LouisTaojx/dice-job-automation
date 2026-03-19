@@ -78,6 +78,66 @@ class DiceAutomation:
             f"Visible text snippet: {snippet}"
         )
 
+    def _find_first_visible(self, locators):
+        for by, value in locators:
+            try:
+                elements = self.driver.find_elements(by, value)
+            except Exception:
+                continue
+
+            for element in elements:
+                try:
+                    if element.is_displayed():
+                        return element
+                except Exception:
+                    continue
+
+        return None
+
+    def _go_to_next_results_page(self):
+        current_url = self.driver.current_url
+        next_page_locators = [
+            (By.CSS_SELECTOR, "a[aria-label*='Next']"),
+            (By.CSS_SELECTOR, "button[aria-label*='Next']"),
+            (By.CSS_SELECTOR, "a[rel='next']"),
+            (
+                By.XPATH,
+                "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'next')]",
+            ),
+            (
+                By.XPATH,
+                "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'next')]",
+            ),
+        ]
+
+        next_button = self._find_first_visible(next_page_locators)
+        if next_button is None:
+            return False
+
+        try:
+            disabled_state = (
+                (next_button.get_attribute("aria-disabled") or "").lower() == "true"
+                or (next_button.get_attribute("disabled") is not None)
+            )
+        except Exception:
+            disabled_state = False
+
+        if disabled_state:
+            return False
+
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", next_button)
+        self.driver.execute_script("arguments[0].click();", next_button)
+
+        end_time = time.time() + 10
+        while time.time() < end_time:
+            if self.driver.current_url != current_url:
+                time.sleep(1)
+                return True
+            time.sleep(0.25)
+
+        time.sleep(1.5)
+        return True
+
     def _collect_visible_job_listings(self):
         return self.driver.execute_script(
             """
@@ -227,47 +287,62 @@ class DiceAutomation:
             shadow_dom_handler = ShadowDOMHandler(self.driver, self.wait)
             job_handler = JobHandler(self.driver, self.wait, shadow_dom_handler)
 
-            print("Collecting filtered job listings...")
-            job_listings = self.get_job_listings()
-            if not job_listings:
-                print("No jobs found with current filters")
-                return
-             
             applications_submitted = 0
             jobs_processed = 0
-            job_index = 0
-             
-            while (
-                applications_submitted < self.max_applications
-                and jobs_processed < min(30, len(job_listings))
-            ):
-                try:
-                    if job_index >= len(job_listings):
-                        print("No more job listings to process")
-                        break
+            page_index = 1
 
-                    listing = job_listings[job_index]
-                    title = listing.get("title", "Unknown job")
-                    url = listing.get("url", "")
-                    print(f"\nTrying job {job_index + 1} of {len(job_listings)}: {title}")
+            while applications_submitted < self.max_applications and jobs_processed < 30:
+                print(f"Collecting filtered job listings from results page {page_index}...")
+                job_listings = self.get_job_listings()
+                if not job_listings:
+                    if jobs_processed == 0:
+                        print("No jobs found with current filters")
+                    else:
+                        print("No more job listings found on subsequent pages")
+                    return
 
-                    self.driver.execute_script("window.open(arguments[0], '_blank');", url)
-                    time.sleep(0.75)
+                print(f"Found {len(job_listings)} job links on page {page_index}")
 
-                    if job_handler.apply_to_job(title, url):
-                        applications_submitted += 1
-                     
-                    jobs_processed += 1
-                    job_index += 1
-                    time.sleep(0.5)
-                     
-                except Exception as e:
-                    print(f"Error processing job listing: {str(e)}")
-                    job_index += 1
-                    jobs_processed += 1
-                    continue
-            
+                job_index = 0
+                while (
+                    applications_submitted < self.max_applications
+                    and jobs_processed < 30
+                    and job_index < len(job_listings)
+                ):
+                    try:
+                        listing = job_listings[job_index]
+                        title = listing.get("title", "Unknown job")
+                        url = listing.get("url", "")
+                        print(f"\nTrying job {jobs_processed + 1}: {title}")
+
+                        self.driver.execute_script("window.open(arguments[0], '_blank');", url)
+                        time.sleep(0.75)
+
+                        if job_handler.apply_to_job(title, url):
+                            applications_submitted += 1
+
+                        jobs_processed += 1
+                        job_index += 1
+                        time.sleep(0.5)
+
+                    except Exception as e:
+                        print(f"Error processing job listing: {str(e)}")
+                        job_index += 1
+                        jobs_processed += 1
+                        continue
+
+                if applications_submitted >= self.max_applications or jobs_processed >= 30:
+                    break
+
+                print("Trying to move to the next results page...")
+                if not self._go_to_next_results_page():
+                    print("No additional results pages found")
+                    break
+
+                page_index += 1
+                time.sleep(1)
+
             print(f"\nCompleted! Applied to {applications_submitted} jobs, processed {jobs_processed} listings")
-            
+             
         except Exception as e:
             print(f"An error occurred: {str(e)}")

@@ -7,6 +7,10 @@ class ShadowDOMHandler:
         self.driver = driver
         self.wait = wait
 
+    def _matches_apply_action(self, text: str) -> bool:
+        normalized = text.lower()
+        return "easy apply" in normalized or "continue application" in normalized
+
     def _find_visible_easy_apply_button(self):
         locators = [
             (
@@ -15,7 +19,15 @@ class ShadowDOMHandler:
             ),
             (
                 By.XPATH,
+                "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
+            ),
+            (
+                By.XPATH,
                 "//*[@role='button' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'easy apply')]",
+            ),
+            (
+                By.XPATH,
+                "//*[@role='button' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
             ),
             (
                 By.XPATH,
@@ -23,7 +35,15 @@ class ShadowDOMHandler:
             ),
             (
                 By.XPATH,
+                "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
+            ),
+            (
+                By.XPATH,
                 "//*[@aria-label and contains(translate(@aria-label, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'easy apply')]",
+            ),
+            (
+                By.XPATH,
+                "//*[@aria-label and contains(translate(@aria-label, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
             ),
         ]
 
@@ -64,7 +84,7 @@ class ShadowDOMHandler:
                     ].filter(Boolean).join(" ").toLowerCase();
                     const isVisible = Boolean(candidate.offsetParent || candidate.getClientRects().length);
 
-                    if (!isVisible || !text.includes("easy apply")) {
+                    if (!isVisible || !(text.includes("easy apply") || text.includes("continue applying"))) {
                         continue;
                     }
 
@@ -85,14 +105,14 @@ class ShadowDOMHandler:
         )
 
     def find_and_click_easy_apply(self):
-        """Find and click the Easy Apply button from regular DOM or shadow DOM"""
-        print("Looking for Easy Apply button...")
+        """Find and click the Easy Apply or Continue Applying button"""
+        print("Looking for Easy Apply / Continue Applying button...")
         try:
             direct_button = self._find_visible_easy_apply_button()
             if direct_button is not None:
                 self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", direct_button)
                 self.driver.execute_script("arguments[0].click();", direct_button)
-                print("Clicked Easy Apply button from regular DOM")
+                print("Clicked application entry button from regular DOM")
                 return True
 
             shadow_host = None
@@ -121,7 +141,7 @@ class ShadowDOMHandler:
                             candidate.getAttribute("aria-label")
                         ].filter(Boolean).join(" ").toLowerCase();
 
-                        if (text.includes('easy apply')) {
+                        if (text.includes('easy apply') || text.includes('continue applying')) {
                             candidate.click();
                             return true;
                         }
@@ -134,10 +154,10 @@ class ShadowDOMHandler:
                 button_clicked = self._click_easy_apply_in_any_shadow_root()
 
             if button_clicked:
-                print("Successfully clicked Easy Apply button")
+                print("Successfully clicked application entry button")
                 return True
 
-            print("Easy Apply button not found - job might be already applied to")
+            print("Application entry button not found - job might be already applied to")
             return False
 
         except Exception as e:

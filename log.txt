@@ -87,3 +87,1013 @@ Clicked Easy Apply button from regular DOM
 Looking for Next button...
 Clicking Next button...
 Looking for Submit button...
+
+=== Run started 2026-03-18 22:02:51 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings...
+
+Trying job 1 of 21: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Easy Apply button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer | https://www.dice.com/job-detail/653264e2-0990-4ad7-828e-60c932ea85ae
+Closing job tab...
+
+Trying job 2 of 21: Java Developer (W2 Citizens Only)
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Easy Apply button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer (W2 Citizens Only) | https://www.dice.com/job-detail/d307a42c-9a8e-4545-a379-d3e87cbac3f1
+Closing job tab...
+
+Trying job 3 of 21: Java Developer - Hybrid project in Albany NY - Only need local candidates
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Easy Apply button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer - Hybrid project in Albany NY - Only need local candidates | https://www.dice.com/job-detail/6ee14ae3-6f78-4180-a390-9ddbaad91693
+Closing job tab...
+
+Trying job 4 of 21: Senior Full Stack Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply button...
+Clicked Easy Apply button from regular DOM
+Looking for Submit button...
+Looking for Review button...
+Looking for Next button...
+Clicked Next button
+Looking for Submit button...
+Looking for Review button...
+Looking for Next button...
+Clicked Next button
+Looking for Submit button...
+Looking for Review button...
+Looking for Next button...
+Could not process job: Senior Full Stack Java Developer | https://www.dice.com/job-detail/a44261f8-ded9-4776-b99b-69e05da97c27 | no such window: target window already closed
+Closing job tab...
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc961a81]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 5 of 21: Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 6 of 21: (W2 Contract Position/ Onsite) Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 7 of 21: Senior Java developer with APIGEE integration experience
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 8 of 21: Java SE Developer (Banking Domain)
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 9 of 21: Java Developer with Angular---Only on w2 No C2C Any visa is fine
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 10 of 21: Java Full stack Developer- Intermediate
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 11 of 21: Java Developer (AngularJS)
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 12 of 21: Java Full stack Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 13 of 21: Software Developer - Java Spring
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 14 of 21: Full Stack Developer (Java/Angular)
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 15 of 21: Software Engineer Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 16 of 21: Java Developer (Spring Boot, Angular) Lansing, MI (Hybrid)
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 17 of 21: Sr. Java developer with Spark
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 18 of 21: Java Full Stack Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 19 of 21: Java Software Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 20 of 21: Sr. Core Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 21 of 21: Jobs Directory
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8a4332]
+	chromedriver!(No symbol) [0x7ff7bc9578b6]
+	chromedriver!(No symbol) [0x7ff7bc973eb2]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Completed! Applied to 0 jobs, processed 21 listings
+
+Automation finished.
+
+=== Run started 2026-03-18 22:10:52 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings from results page 1...
+Found 21 job links on page 1
+
+Trying job 1: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Application entry button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer | https://www.dice.com/job-detail/653264e2-0990-4ad7-828e-60c932ea85ae
+Closing job tab...
+
+Trying job 2: Java Developer (W2 Citizens Only)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Error finding Easy Apply button: no such window: target window already closed
+Skipping job - already applied or not available for easy apply: Java Developer (W2 Citizens Only) | https://www.dice.com/job-detail/d307a42c-9a8e-4545-a379-d3e87cbac3f1
+Closing job tab...
+Error processing job listing: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cdb7d]
+	chromedriver!(No symbol) [0x7ff7bc8b75bf]
+	chromedriver!(No symbol) [0x7ff7bc8b867f]
+	chromedriver!(No symbol) [0x7ff7bc8ce6f3]
+	chromedriver!(No symbol) [0x7ff7bc8a3cb1]
+	chromedriver!(No symbol) [0x7ff7bc961a20]
+	chromedriver!(No symbol) [0x7ff7bc919a18]
+	chromedriver!(No symbol) [0x7ff7bc91a8f3]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff7bcb6c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff7bcb51387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 3: Java Developer - Hybrid project in Albany NY - Only need local candidates
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 4: Senior Full Stack Java Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 5: Java Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 6: (W2 Contract Position/ Onsite) Java Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 7: Senior Java developer with APIGEE integration experience
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 8: Java SE Developer (Banking Domain)
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 9: Java Developer with Angular---Only on w2 No C2C Any visa is fine
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 10: Java Full stack Developer- Intermediate
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 11: Java Developer (AngularJS)
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 12: Java Full stack Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 13: Software Developer - Java Spring
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 14: Full Stack Developer (Java/Angular)
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 15: Software Engineer Java Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 16: Java Developer (Spring Boot, Angular) Lansing, MI (Hybrid)
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 17: Sr. Java developer with Spark
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 18: Java Full Stack Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 19: Java Software Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 20: Sr. Core Java Developer
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Trying job 21: Jobs Directory
+Error processing job listing: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+Trying to move to the next results page...
+An error occurred: Message: invalid session id
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff7bcb63045+14585]
+	chromedriver!GetHandleVerifier [0x7ff7bcb630b0+145f0]
+	chromedriver!(No symbol) [0x7ff7bc8cd966]
+	chromedriver!(No symbol) [0x7ff7bc918a93]
+	chromedriver!(No symbol) [0x7ff7bc9505a2]
+	chromedriver!(No symbol) [0x7ff7bc94a7f1]
+	chromedriver!(No symbol) [0x7ff7bc949aa3]
+	chromedriver!(No symbol) [0x7ff7bc896565]
+	chromedriver!GetHandleVerifier [0x7ff7bce6ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff7bce6536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff7bce87d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff7bcb7f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff7bcb884dc+39a1c]
+	chromedriver!(No symbol) [0x7ff7bc89532a]
+	chromedriver!GetHandleVerifier [0x7ff7bcfc3928+474e68]
+	KERNEL32!BaseThreadInitThunk [0x7ffb2039e8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffb21dec48c+2c]
+
+
+Automation finished.
