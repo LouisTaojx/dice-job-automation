@@ -1,21 +1,53 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import TimeoutException
-import time
+from __future__ import annotations
 
-from .handlers.shadow_dom_handler import ShadowDOMHandler
+import time
+from collections.abc import Iterable
+
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
 from .handlers.job_handler import JobHandler
 from .handlers.search_filter_handler import SearchAndFilter
+from .handlers.shadow_dom_handler import ShadowDOMHandler
+from .utils.humanizer import wait_for_document_ready
+
 
 class DiceAutomation:
-    def __init__(self, driver, wait, username, password, keyword, max_applications):
+    def __init__(self, driver, wait, username, password, keywords, max_applications, humanizer):
         self.driver = driver
         self.wait = wait
         self.username = username
         self.password = password
-        self.search_keyword = keyword
+        self.search_keywords = self._normalize_keywords(keywords)
         self.max_applications = max_applications
+        self.humanizer = humanizer
+        self.title_skip_phrases = (
+            "citizens only",
+            "citizen only",
+            "need citizen",
+            "need citizens",
+            "us citizen",
+            "usc only",
+            "green card",
+            "green-card",
+            "green card holder",
+            "gc holder",
+        )
+
+    def _normalize_keywords(self, keywords):
+        if isinstance(keywords, str):
+            return [keywords.strip()] if keywords.strip() else []
+
+        if isinstance(keywords, Iterable):
+            normalized_keywords = []
+            for keyword in keywords:
+                normalized_keyword = str(keyword).strip()
+                if normalized_keyword:
+                    normalized_keywords.append(normalized_keyword)
+            return normalized_keywords
+
+        return []
 
     def _find_first_visible(self, locators):
         for by, value in locators:
@@ -41,13 +73,16 @@ class DiceAutomation:
         button = self._find_first_visible(locators)
         if button:
             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
+            self.humanizer.short_pause()
             self.driver.execute_script("arguments[0].click();", button)
             print(f"Clicked {button_name} button")
+            self.humanizer.short_pause()
             return True
 
         if fallback_keys is not None:
             fallback_keys.send_keys(Keys.RETURN)
             print(f"Submitted {button_name} step with Enter")
+            self.humanizer.short_pause()
             return True
 
         return False
@@ -78,24 +113,29 @@ class DiceAutomation:
             f"Visible text snippet: {snippet}"
         )
 
-    def _find_first_visible(self, locators):
-        for by, value in locators:
-            try:
-                elements = self.driver.find_elements(by, value)
-            except Exception:
-                continue
-
-            for element in elements:
-                try:
-                    if element.is_displayed():
-                        return element
-                except Exception:
-                    continue
-
+    def _blocked_title_phrase(self, title):
+        normalized_title = " ".join(title.lower().split())
+        for phrase in self.title_skip_phrases:
+            if phrase in normalized_title:
+                return phrase
         return None
+
+    def _get_first_listing_url(self):
+        try:
+            job_listings = self._collect_visible_job_listings()
+        except Exception:
+            return ""
+
+        for listing in job_listings:
+            url = listing.get("url", "").strip()
+            if url:
+                return url
+
+        return ""
 
     def _go_to_next_results_page(self):
         current_url = self.driver.current_url
+        current_first_listing_url = self._get_first_listing_url()
         next_page_locators = [
             (By.CSS_SELECTOR, "a[aria-label*='Next']"),
             (By.CSS_SELECTOR, "button[aria-label*='Next']"),
@@ -126,17 +166,32 @@ class DiceAutomation:
             return False
 
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", next_button)
+        self.humanizer.short_pause()
         self.driver.execute_script("arguments[0].click();", next_button)
+        self.humanizer.short_pause()
 
-        end_time = time.time() + 10
-        while time.time() < end_time:
-            if self.driver.current_url != current_url:
-                time.sleep(1)
-                return True
-            time.sleep(0.25)
+        page_wait = type(self.wait)(self.driver, 10)
+        try:
+            page_wait.until(
+                lambda driver: driver.current_url != current_url
+                or self._get_first_listing_url() not in {"", current_first_listing_url}
+            )
+            try:
+                wait_for_document_ready(self.driver, timeout=10)
+            except Exception:
+                pass
+            self.humanizer.page_pause()
+            return True
+        except TimeoutException:
+            refreshed_first_listing_url = self._get_first_listing_url()
+            if (
+                self.driver.current_url == current_url
+                and refreshed_first_listing_url in {"", current_first_listing_url}
+            ):
+                return False
 
-        time.sleep(1.5)
-        return True
+            self.humanizer.page_pause()
+            return True
 
     def _collect_visible_job_listings(self):
         return self.driver.execute_script(
@@ -215,22 +270,23 @@ class DiceAutomation:
             print("Navigating to Dice login page...")
             self.driver.get("https://www.dice.com/dashboard/login")
 
-            self.wait.until(lambda driver: driver.execute_script("return document.readyState") == "complete")
+            wait_for_document_ready(self.driver, timeout=45)
+            self.humanizer.page_pause()
             print("Logging in...")
 
             email_input = self._wait_for_visible(email_locators, timeout=45)
             email_input.clear()
             email_input.send_keys(self.username)
-            time.sleep(1)
+            self.humanizer.short_pause()
 
             self._click_button("Continue", continue_button_locators, fallback_keys=email_input)
             password_input = self._wait_for_visible(password_locators, timeout=45)
             password_input.clear()
             password_input.send_keys(self.password)
-            time.sleep(1)
+            self.humanizer.short_pause()
 
             self._click_button("Sign In", sign_in_button_locators, fallback_keys=password_input)
-            time.sleep(3)
+            self.humanizer.page_pause()
             return True
 
         except TimeoutException:
@@ -271,78 +327,132 @@ class DiceAutomation:
         print(self._jobs_debug_summary())
         return []
 
+    def _process_search_results(self, keyword, job_handler, seen_urls, remaining_applications):
+        applications_submitted = 0
+        jobs_processed = 0
+        page_index = 1
+        max_jobs_to_scan = max(remaining_applications * 10, 60)
+
+        while applications_submitted < remaining_applications and jobs_processed < max_jobs_to_scan:
+            print(f"Collecting filtered job listings for '{keyword}' from results page {page_index}...")
+            job_listings = self.get_job_listings()
+            if not job_listings:
+                if jobs_processed == 0:
+                    print(f"No jobs found with current filters for '{keyword}'")
+                else:
+                    print(f"No more job listings found for '{keyword}' on subsequent pages")
+                break
+
+            print(f"Found {len(job_listings)} visible job links on page {page_index}")
+            fresh_job_listings = []
+            for listing in job_listings:
+                url = listing.get("url", "").strip()
+                if not url or url in seen_urls:
+                    continue
+
+                fresh_job_listings.append({
+                    "title": listing.get("title", "Unknown job"),
+                    "url": url,
+                })
+
+            if page_index == 1:
+                print("Dice may report more total jobs than are visible on one page. The automation will keep paging automatically.")
+
+            if not fresh_job_listings:
+                print("No new job links found on this page.")
+            else:
+                print(f"Queued {len(fresh_job_listings)} new job links from page {page_index}")
+
+            for listing in fresh_job_listings:
+                if (
+                    applications_submitted >= remaining_applications
+                    or jobs_processed >= max_jobs_to_scan
+                ):
+                    break
+
+                try:
+                    title = listing.get("title", "Unknown job")
+                    url = listing.get("url", "")
+                    seen_urls.add(url)
+
+                    blocked_phrase = self._blocked_title_phrase(title)
+                    if blocked_phrase:
+                        print(f"Skipping job due to title filter ({blocked_phrase}): {title} | {url}")
+                        jobs_processed += 1
+                        continue
+
+                    print(f"\nTrying job {jobs_processed + 1} for '{keyword}': {title}")
+
+                    self.driver.execute_script("window.open(arguments[0], '_blank');", url)
+                    self.humanizer.short_pause()
+
+                    if job_handler.apply_to_job(title, url):
+                        applications_submitted += 1
+
+                    jobs_processed += 1
+                    self.humanizer.short_pause()
+
+                except Exception as e:
+                    print(f"Error processing job listing: {str(e)}")
+                    jobs_processed += 1
+                    continue
+
+            if applications_submitted >= remaining_applications or jobs_processed >= max_jobs_to_scan:
+                break
+
+            print("Trying to move to the next results page...")
+            if not self._go_to_next_results_page():
+                print("No additional results pages found")
+                break
+
+            page_index += 1
+            self.humanizer.page_pause()
+
+        if jobs_processed >= max_jobs_to_scan and applications_submitted < remaining_applications:
+            print(f"Reached the scan limit of {max_jobs_to_scan} listings for '{keyword}' before hitting the application target.")
+
+        return applications_submitted, jobs_processed
+
     def run(self):
         """Main method to run the automation"""
         try:
             if not self.login():
                 raise Exception("Login failed")
 
-            search_filter = SearchAndFilter(self.driver, self.wait)
-            if not search_filter.perform_search(self.search_keyword):
-                raise Exception("Search failed")
+            if not self.search_keywords:
+                raise Exception("No valid search keywords were provided")
 
-            if not search_filter.apply_filters():
-                raise Exception("Filter application failed")
-
-            shadow_dom_handler = ShadowDOMHandler(self.driver, self.wait)
-            job_handler = JobHandler(self.driver, self.wait, shadow_dom_handler)
+            search_filter = SearchAndFilter(self.driver, self.wait, self.humanizer)
+            shadow_dom_handler = ShadowDOMHandler(self.driver, self.wait, self.humanizer)
+            job_handler = JobHandler(self.driver, self.wait, shadow_dom_handler, self.humanizer)
 
             applications_submitted = 0
             jobs_processed = 0
-            page_index = 1
+            seen_urls = set()
 
-            while applications_submitted < self.max_applications and jobs_processed < 30:
-                print(f"Collecting filtered job listings from results page {page_index}...")
-                job_listings = self.get_job_listings()
-                if not job_listings:
-                    if jobs_processed == 0:
-                        print("No jobs found with current filters")
-                    else:
-                        print("No more job listings found on subsequent pages")
-                    return
-
-                print(f"Found {len(job_listings)} job links on page {page_index}")
-
-                job_index = 0
-                while (
-                    applications_submitted < self.max_applications
-                    and jobs_processed < 30
-                    and job_index < len(job_listings)
-                ):
-                    try:
-                        listing = job_listings[job_index]
-                        title = listing.get("title", "Unknown job")
-                        url = listing.get("url", "")
-                        print(f"\nTrying job {jobs_processed + 1}: {title}")
-
-                        self.driver.execute_script("window.open(arguments[0], '_blank');", url)
-                        time.sleep(0.75)
-
-                        if job_handler.apply_to_job(title, url):
-                            applications_submitted += 1
-
-                        jobs_processed += 1
-                        job_index += 1
-                        time.sleep(0.5)
-
-                    except Exception as e:
-                        print(f"Error processing job listing: {str(e)}")
-                        job_index += 1
-                        jobs_processed += 1
-                        continue
-
-                if applications_submitted >= self.max_applications or jobs_processed >= 30:
+            for keyword_index, keyword in enumerate(self.search_keywords, start=1):
+                if applications_submitted >= self.max_applications:
                     break
 
-                print("Trying to move to the next results page...")
-                if not self._go_to_next_results_page():
-                    print("No additional results pages found")
-                    break
+                print(f"\nStarting search {keyword_index}/{len(self.search_keywords)} with keyword: {keyword}")
+                if not search_filter.perform_search(keyword):
+                    print(f"Skipping keyword because search failed: {keyword}")
+                    continue
 
-                page_index += 1
-                time.sleep(1)
+                if not search_filter.apply_filters():
+                    print(f"Skipping keyword because filters could not be applied: {keyword}")
+                    continue
+
+                keyword_applications, keyword_jobs_processed = self._process_search_results(
+                    keyword,
+                    job_handler,
+                    seen_urls,
+                    self.max_applications - applications_submitted,
+                )
+                applications_submitted += keyword_applications
+                jobs_processed += keyword_jobs_processed
 
             print(f"\nCompleted! Applied to {applications_submitted} jobs, processed {jobs_processed} listings")
-             
+
         except Exception as e:
             print(f"An error occurred: {str(e)}")

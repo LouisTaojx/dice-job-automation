@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 import runpy
 from typing import Any
 
@@ -13,6 +14,7 @@ DEFAULT_CREDENTIALS = {
 
 DEFAULT_SEARCH_SETTINGS = {
     "keyword": "Data Engineer",
+    "keywords": ["Data Engineer"],
     "max_applications": 10,
 }
 
@@ -33,13 +35,35 @@ def _normalize_max_applications(value: Any) -> int:
     return normalized if normalized > 0 else DEFAULT_SEARCH_SETTINGS["max_applications"]
 
 
+def normalize_keywords(value: Any) -> list[str]:
+    if isinstance(value, str):
+        raw_keywords = re.split(r"[\r\n,]+", value)
+    elif isinstance(value, (list, tuple, set)):
+        raw_keywords = list(value)
+    elif value is None:
+        raw_keywords = []
+    else:
+        raw_keywords = [value]
+
+    keywords: list[str] = []
+    for item in raw_keywords:
+        normalized = " ".join(str(item).split()).strip()
+        if normalized:
+            keywords.append(normalized)
+
+    return keywords
+
+
 def render_config(
     credentials: dict[str, Any],
     search_settings: dict[str, Any],
 ) -> str:
     username = str(credentials.get("username", ""))
     password = str(credentials.get("password", ""))
-    keyword = str(search_settings.get("keyword", ""))
+    keywords = normalize_keywords(
+        search_settings.get("keywords", search_settings.get("keyword", ""))
+    ) or list(DEFAULT_SEARCH_SETTINGS["keywords"])
+    keyword = keywords[0]
     max_applications = _normalize_max_applications(search_settings.get("max_applications"))
 
     return (
@@ -49,6 +73,7 @@ def render_config(
         "}\n\n"
         "SEARCH_SETTINGS = {\n"
         f"    \"keyword\": {keyword!r},\n"
+        f"    \"keywords\": {keywords!r},\n"
         f"    \"max_applications\": {max_applications}\n"
         "}\n"
     )
@@ -72,6 +97,11 @@ def load_config() -> dict[str, dict[str, Any]]:
     namespace = runpy.run_path(str(CONFIG_PATH))
     credentials = {**DEFAULT_CREDENTIALS, **_coerce_mapping(namespace.get("CREDENTIALS"))}
     search_settings = {**DEFAULT_SEARCH_SETTINGS, **_coerce_mapping(namespace.get("SEARCH_SETTINGS"))}
+    keywords = normalize_keywords(
+        search_settings.get("keywords", search_settings.get("keyword"))
+    ) or list(DEFAULT_SEARCH_SETTINGS["keywords"])
+    search_settings["keywords"] = keywords
+    search_settings["keyword"] = keywords[0]
     search_settings["max_applications"] = _normalize_max_applications(
         search_settings.get("max_applications")
     )

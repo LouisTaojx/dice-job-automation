@@ -14,15 +14,16 @@ def run_automation(config_data: dict[str, dict[str, Any]] | None = None) -> None
 
     driver = None
     try:
-        driver, wait = setup_driver()
+        driver, wait, humanizer = setup_driver()
 
         automation = DiceAutomation(
             driver=driver,
             wait=wait,
             username=str(credentials.get("username", "")),
             password=str(credentials.get("password", "")),
-            keyword=str(search_settings.get("keyword", "")),
+            keywords=search_settings.get("keywords", search_settings.get("keyword", "")),
             max_applications=int(search_settings.get("max_applications", 0)),
+            humanizer=humanizer,
         )
         automation.run()
     finally:

@@ -3,49 +3,33 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class ShadowDOMHandler:
-    def __init__(self, driver, wait):
+    APPLICATION_ENTRY_TERMS = (
+        "easy apply",
+        "continue application",
+        "continue applying",
+    )
+
+    def __init__(self, driver, wait, humanizer):
         self.driver = driver
         self.wait = wait
+        self.humanizer = humanizer
 
     def _matches_apply_action(self, text: str) -> bool:
         normalized = text.lower()
-        return "easy apply" in normalized or "continue application" in normalized
+        return any(term in normalized for term in self.APPLICATION_ENTRY_TERMS)
 
     def _find_visible_easy_apply_button(self):
-        locators = [
-            (
-                By.XPATH,
-                "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'easy apply')]",
-            ),
-            (
-                By.XPATH,
-                "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
-            ),
-            (
-                By.XPATH,
-                "//*[@role='button' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'easy apply')]",
-            ),
-            (
-                By.XPATH,
-                "//*[@role='button' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
-            ),
-            (
-                By.XPATH,
-                "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'easy apply')]",
-            ),
-            (
-                By.XPATH,
-                "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
-            ),
-            (
-                By.XPATH,
-                "//*[@aria-label and contains(translate(@aria-label, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'easy apply')]",
-            ),
-            (
-                By.XPATH,
-                "//*[@aria-label and contains(translate(@aria-label, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'continue applying')]",
-            ),
+        locators = []
+        xpath_templates = [
+            "//button[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{term}')]",
+            "//*[@role='button' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{term}')]",
+            "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{term}')]",
+            "//*[@aria-label and contains(translate(@aria-label, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{term}')]",
         ]
+
+        for term in self.APPLICATION_ENTRY_TERMS:
+            for xpath_template in xpath_templates:
+                locators.append((By.XPATH, xpath_template.format(term=term)))
 
         for by, value in locators:
             try:
@@ -65,6 +49,7 @@ class ShadowDOMHandler:
     def _click_easy_apply_in_any_shadow_root(self):
         return self.driver.execute_script(
             """
+            const terms = arguments[0];
             const queue = [document];
             const visited = new Set();
 
@@ -84,7 +69,7 @@ class ShadowDOMHandler:
                     ].filter(Boolean).join(" ").toLowerCase();
                     const isVisible = Boolean(candidate.offsetParent || candidate.getClientRects().length);
 
-                    if (!isVisible || !(text.includes("easy apply") || text.includes("continue applying"))) {
+                    if (!isVisible || !terms.some((term) => text.includes(term))) {
                         continue;
                     }
 
@@ -101,18 +86,21 @@ class ShadowDOMHandler:
             }
 
             return false;
-            """
+            """,
+            list(self.APPLICATION_ENTRY_TERMS),
         )
 
     def find_and_click_easy_apply(self):
-        """Find and click the Easy Apply or Continue Applying button"""
-        print("Looking for Easy Apply / Continue Applying button...")
+        """Find and click the Easy Apply or Continue Application button"""
+        print("Looking for Easy Apply / Continue Application button...")
         try:
             direct_button = self._find_visible_easy_apply_button()
             if direct_button is not None:
                 self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", direct_button)
+                self.humanizer.short_pause()
                 self.driver.execute_script("arguments[0].click();", direct_button)
                 print("Clicked application entry button from regular DOM")
+                self.humanizer.short_pause()
                 return True
 
             shadow_host = None
@@ -127,6 +115,7 @@ class ShadowDOMHandler:
             button_clicked = False
             if shadow_host is not None:
                 button_clicked = self.driver.execute_script("""
+                    const terms = arguments[1];
                     const shadowHost = arguments[0];
                     const shadowRoot = shadowHost.shadowRoot;
                     if (!shadowRoot) {
@@ -141,26 +130,27 @@ class ShadowDOMHandler:
                             candidate.getAttribute("aria-label")
                         ].filter(Boolean).join(" ").toLowerCase();
 
-                        if (text.includes('easy apply') || text.includes('continue applying')) {
+                        if (terms.some((term) => text.includes(term))) {
                             candidate.click();
                             return true;
                         }
                     }
 
                     return false;
-                """, shadow_host)
+                """, shadow_host, list(self.APPLICATION_ENTRY_TERMS))
 
             if not button_clicked:
                 button_clicked = self._click_easy_apply_in_any_shadow_root()
 
             if button_clicked:
                 print("Successfully clicked application entry button")
+                self.humanizer.short_pause()
                 return True
 
-            print("Application entry button not found - job might be already applied to")
+            print("Application entry button not found - job may already be completed or not eligible")
             return False
 
         except Exception as e:
             message = getattr(e, "msg", str(e)).splitlines()[0]
-            print(f"Error finding Easy Apply button: {message}")
+            print(f"Error finding application entry button: {message}")
             return False

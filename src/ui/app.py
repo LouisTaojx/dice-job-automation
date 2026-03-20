@@ -10,6 +10,7 @@ from ..config_manager import (
     DEFAULT_CREDENTIALS,
     get_config_path,
     load_config,
+    normalize_keywords,
     save_config,
 )
 from ..log_utils import get_log_path, mirrored_output
@@ -113,7 +114,7 @@ class AutomationApp(tk.Tk):
         ).grid(row=0, column=0, sticky="w")
         ttk.Label(
             header,
-            text="Enter your credentials and search keyword. The run will automatically filter for Easy Apply, Today, and Contract jobs.",
+            text="Enter your credentials and one or more job titles. The run logs in once, then searches each title with the Easy Apply, Today, and Contract filters.",
             style="Subtitle.TLabel",
         ).grid(row=1, column=0, sticky="w", pady=(6, 0))
 
@@ -128,7 +129,7 @@ class AutomationApp(tk.Tk):
 
         self._add_field(config_card, 1, "Dice Email", self.username_var)
         self._add_field(config_card, 2, "Password", self.password_var, show="*")
-        self._add_field(config_card, 3, "Keyword", self.keyword_var)
+        self._add_field(config_card, 3, "Keywords", self.keyword_var)
         self._add_field(config_card, 4, "Max Applications", self.max_applications_var)
 
         ttk.Label(
@@ -136,6 +137,11 @@ class AutomationApp(tk.Tk):
             text=f"Config file: {get_config_path()}",
             style="Body.TLabel",
         ).grid(row=5, column=0, columnspan=3, sticky="w", pady=(10, 0))
+        ttk.Label(
+            config_card,
+            text="Separate multiple job titles with commas.",
+            style="Body.TLabel",
+        ).grid(row=6, column=0, columnspan=3, sticky="w", pady=(6, 0))
 
         actions_card = ttk.Frame(container, padding=18, style="Card.TFrame")
         actions_card.grid(row=2, column=0, sticky="ew", pady=(16, 16))
@@ -244,13 +250,16 @@ class AutomationApp(tk.Tk):
         if max_applications <= 0:
             raise ValueError("Max applications must be greater than zero.")
 
+        keywords = normalize_keywords(self.keyword_var.get().strip())
+
         payload = {
             "credentials": {
                 "username": self.username_var.get().strip(),
                 "password": self.password_var.get().strip(),
             },
             "search_settings": {
-                "keyword": self.keyword_var.get().strip(),
+                "keyword": keywords[0] if keywords else self.keyword_var.get().strip(),
+                "keywords": keywords,
                 "max_applications": max_applications,
             },
         }
@@ -260,8 +269,8 @@ class AutomationApp(tk.Tk):
                 raise ValueError("Enter your Dice email before starting.")
             if not payload["credentials"]["password"]:
                 raise ValueError("Enter your Dice password before starting.")
-            if not payload["search_settings"]["keyword"]:
-                raise ValueError("Enter a search keyword before starting.")
+            if not payload["search_settings"]["keywords"]:
+                raise ValueError("Enter at least one search keyword before starting.")
 
             if payload["credentials"]["username"] == DEFAULT_CREDENTIALS["username"]:
                 raise ValueError("Replace the placeholder email before starting.")
@@ -292,7 +301,7 @@ class AutomationApp(tk.Tk):
         config_data = load_config()
         self.username_var.set(str(config_data["credentials"]["username"]))
         self.password_var.set(str(config_data["credentials"]["password"]))
-        self.keyword_var.set(str(config_data["search_settings"]["keyword"]))
+        self.keyword_var.set(", ".join(config_data["search_settings"]["keywords"]))
         self.max_applications_var.set(str(config_data["search_settings"]["max_applications"]))
         self.status_var.set("Loaded settings from config.py.")
 

@@ -1097,3 +1097,886 @@ Stacktrace:
 
 
 Automation finished.
+
+=== Run started 2026-03-18 22:15:08 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings from results page 1...
+Found 21 job links on page 1
+
+Trying job 1: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Application entry button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer | https://www.dice.com/job-detail/653264e2-0990-4ad7-828e-60c932ea85ae
+Closing job tab...
+
+Trying job 2: Java Developer (W2 Citizens Only)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Application entry button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer (W2 Citizens Only) | https://www.dice.com/job-detail/d307a42c-9a8e-4545-a379-d3e87cbac3f1
+Closing job tab...
+
+Trying job 3: Java Developer - Hybrid project in Albany NY - Only need local candidates
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Application entry button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Java Developer - Hybrid project in Albany NY - Only need local candidates | https://www.dice.com/job-detail/6ee14ae3-6f78-4180-a390-9ddbaad91693
+Closing job tab...
+
+Trying job 4: Senior Full Stack Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Application entry button not found - job might be already applied to
+Skipping job - already applied or not available for easy apply: Senior Full Stack Java Developer | https://www.dice.com/job-detail/a44261f8-ded9-4776-b99b-69e05da97c27
+Closing job tab...
+
+Trying job 5: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Clicked application entry button from regular DOM
+Looking for Submit button...
+Looking for Review button...
+Looking for Next button...
+Clicked Next button
+Looking for Submit button...
+Clicked Submit button
+Submit clicked for: Java Developer
+Closing job tab...
+
+Trying job 6: (W2 Contract Position/ Onsite) Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Applying button...
+Clicked application entry button from regular DOM
+Looking for Submit button...
+Looking for Review button...
+Looking for Next button...
+Clicked Next button
+Looking for Submit button...
+Clicked Submit button
+Submit clicked for: (W2 Contract Position/ Onsite) Java Developer
+Closing job tab...
+
+Completed! Applied to 2 jobs, processed 6 listings
+
+Automation finished.
+
+=== Run started 2026-03-19 18:35:20 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings from results page 1...
+Found 21 visible job links on page 1
+Dice may report more total jobs than are visible on one page. The automation will keep paging automatically.
+Queued 21 new job links from page 1
+
+Trying job 1: Java Backend Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Review button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Backend Developer
+Closing job tab...
+
+Trying job 2: Full Stack Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Full Stack Java Developer
+Closing job tab...
+
+Trying job 3: Need Java Developer with Azure, Event Grid exp || Quality engineer with Selenium, JAVA Automation exp || Weblogic Admin with Azure exp - Hybrid - CA or GA
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Need Java Developer with Azure, Event Grid exp || Quality engineer with Selenium, JAVA Automation exp || Weblogic Admin with Azure exp - Hybrid - CA or GA
+Closing job tab...
+
+Trying job 4: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Developer
+Closing job tab...
+
+Trying job 5: Hiring: Senior Java Developer for Denver, Co (onsite)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Hiring: Senior Java Developer for Denver, Co (onsite)
+Closing job tab...
+
+Trying job 6: Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Developer
+Closing job tab...
+
+Trying job 7: Need Java Developer with Flink - Jersey City, NJ / Tampa, FL / Chicago, IL
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Need Java Developer with Flink - Jersey City, NJ / Tampa, FL / Chicago, IL
+Closing job tab...
+
+Trying job 8: (W2 Contract Position/ Onsite) Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: (W2 Contract Position/ Onsite) Java Developer | https://www.dice.com/job-detail/9c497587-5ee2-4e03-958a-fed67e93c996
+Closing job tab...
+
+Trying job 9: Java Developer/Software Engineer III(Remote, no third party, only W2)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Developer/Software Engineer III(Remote, no third party, only W2)
+Closing job tab...
+
+Trying job 10: Java Developer || Face to Face Interview
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Developer || Face to Face Interview
+Closing job tab...
+
+Trying job 11: Java and Python Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java and Python Developer
+Closing job tab...
+
+Completed! Applied to 10 jobs, processed 11 listings
+
+Automation finished.
+
+=== Run started 2026-03-19 18:43:25 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java backend Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings from results page 1...
+Found 3 visible job links on page 1
+Dice may report more total jobs than are visible on one page. The automation will keep paging automatically.
+Queued 3 new job links from page 1
+
+Trying job 1: Java Backend Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Java Backend Developer | https://www.dice.com/job-detail/86566f1b-cf55-464d-b2f6-06dc048d0c01
+Closing job tab...
+
+Trying job 2: Senior Java Backend Engineer Hybrid role W2 only
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Senior Java Backend Engineer Hybrid role W2 only
+Closing job tab...
+
+Trying job 3: Jobs Directory
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Jobs Directory | https://www.dice.com/jobs/browse-jobs
+Closing job tab...
+Trying to move to the next results page...
+No additional results pages found
+
+Completed! Applied to 1 jobs, processed 3 listings
+
+Automation finished.
+
+=== Run started 2026-03-19 18:45:32 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Full Stack Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings from results page 1...
+Found 13 visible job links on page 1
+Dice may report more total jobs than are visible on one page. The automation will keep paging automatically.
+Queued 13 new job links from page 1
+
+Trying job 1: JAVA FULL STACK DEVELOPER
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: JAVA FULL STACK DEVELOPER
+Closing job tab...
+
+Trying job 2: Java Fullstack Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Fullstack Developer
+Closing job tab...
+
+Trying job 3: Java Full Stack Developer with React & AWS Services (Multiple Locations in US) - In person Interview
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Full Stack Developer with React & AWS Services (Multiple Locations in US) - In person Interview
+Closing job tab...
+
+Trying job 4: AWS Java Full Stack Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: AWS Java Full Stack Developer
+Closing job tab...
+
+Trying job 5: Java Full Stack Developer with AI Skills | New York, NY– 5 days onsite | Contract W2
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Full Stack Developer with AI Skills | New York, NY– 5 days onsite | Contract W2
+Closing job tab...
+
+Trying job 6: Senior Full Stack Java Developer – NYC (Onsite)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Senior Full Stack Java Developer – NYC (Onsite)
+Closing job tab...
+
+Trying job 7: Java/Spring boot Full Stack Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Review button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java/Spring boot Full Stack Developer
+Closing job tab...
+
+Trying job 8: Full Stack JAVA developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Full Stack JAVA developer
+Closing job tab...
+
+Trying job 9: Senior Full Stack Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Senior Full Stack Java Developer
+Closing job tab...
+
+Trying job 10: Full Stack Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Full Stack Java Developer | https://www.dice.com/job-detail/4a55b2c3-1ad3-4464-86e1-a5682d6e51c8
+Closing job tab...
+
+Trying job 11: Java Full Stack Developers with AI/ML Experience
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Clicked application entry button from regular DOM
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Next button
+Looking for Next, Review, or Submit button...
+Clicked Submit button
+Submit clicked for: Java Full Stack Developers with AI/ML Experience
+Closing job tab...
+
+Completed! Applied to 10 jobs, processed 11 listings
+
+Automation finished.
+
+=== Run started 2026-03-19 19:34:31 ===
+Navigating to Dice login page...
+Logging in...
+Clicked Continue button
+Clicked Sign In button
+
+Starting search 1/1 with keyword: Java Developer
+Checking for search box...
+Search box found directly
+Entering search keyword: Java Developer
+Search initiated successfully
+Applying filters...
+Looking for Easy Apply filter...
+Easy Apply filter applied
+Looking for Today filter...
+Today filter applied
+Looking for Contract filter...
+Contract filter applied
+Successfully applied all filters
+Collecting filtered job listings for 'Java Developer' from results page 1...
+Found 21 visible job links on page 1
+Dice may report more total jobs than are visible on one page. The automation will keep paging automatically.
+Queued 21 new job links from page 1
+
+Trying job 1 for 'Java Developer': Java Backend Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Java Backend Developer | https://www.dice.com/job-detail/86566f1b-cf55-464d-b2f6-06dc048d0c01
+Closing job tab...
+
+Trying job 2 for 'Java Developer': Full Stack Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Full Stack Java Developer | https://www.dice.com/job-detail/4a55b2c3-1ad3-4464-86e1-a5682d6e51c8
+Closing job tab...
+
+Trying job 3 for 'Java Developer': Need Java Developer with Azure, Event Grid exp || Quality engineer with Selenium, JAVA Automation exp || Weblogic Admin with Azure exp - Hybrid - CA or GA
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Need Java Developer with Azure, Event Grid exp || Quality engineer with Selenium, JAVA Automation exp || Weblogic Admin with Azure exp - Hybrid - CA or GA | https://www.dice.com/job-detail/f6a791cc-b6eb-4c4a-8207-10882b64579b
+Closing job tab...
+
+Trying job 4 for 'Java Developer': Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Java Developer | https://www.dice.com/job-detail/2ba063dc-9ae4-436c-92fa-5fbc278f99dd
+Closing job tab...
+
+Trying job 5 for 'Java Developer': Hiring: Senior Java Developer for Denver, Co (onsite)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Hiring: Senior Java Developer for Denver, Co (onsite) | https://www.dice.com/job-detail/e4d9ddc7-8f73-4f37-8124-7404ff2479b3
+Closing job tab...
+
+Trying job 6 for 'Java Developer': Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Java Developer | https://www.dice.com/job-detail/11a521e1-4a49-4bc5-9780-3d3e440350b9
+Closing job tab...
+
+Trying job 7 for 'Java Developer': Need Java Developer with Flink - Jersey City, NJ / Tampa, FL / Chicago, IL
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Need Java Developer with Flink - Jersey City, NJ / Tampa, FL / Chicago, IL | https://www.dice.com/job-detail/15a340e6-72d6-4f64-ad2e-27f6c498dd62
+Closing job tab...
+
+Trying job 8 for 'Java Developer': (W2 Contract Position/ Onsite) Java Developer
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: (W2 Contract Position/ Onsite) Java Developer | https://www.dice.com/job-detail/9c497587-5ee2-4e03-958a-fed67e93c996
+Closing job tab...
+
+Trying job 9 for 'Java Developer': Java Developer/Software Engineer III(Remote, no third party, only W2)
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Java Developer/Software Engineer III(Remote, no third party, only W2) | https://www.dice.com/job-detail/b505be36-0676-4309-95b3-cedc595c756e
+Closing job tab...
+
+Trying job 10 for 'Java Developer': Java Developer || Face to Face Interview
+Waiting for page to load completely...
+Looking for Easy Apply / Continue Application button...
+Application entry button not found - job may already be completed or not eligible
+Skipping job - Easy Apply / Continue Application was not available: Java Developer || Face to Face Interview | https://www.dice.com/job-detail/089092da-d7a7-4d39-9a24-c947fd1266ca
+Closing job tab...
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e071a81]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 11 for 'Java Developer': Java and Python Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 12 for 'Java Developer': JAVA FULL STACK DEVELOPER
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 13 for 'Java Developer': Java Fullstack Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 14 for 'Java Developer': Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 15 for 'Java Developer': Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 16 for 'Java Developer': Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 17 for 'Java Developer': Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 18 for 'Java Developer': Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 19 for 'Java Developer': Full Stack JAVA developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 20 for 'Java Developer': Senior Full Stack Java Developer
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Trying job 21 for 'Java Developer': Jobs Directory
+Error processing job listing: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+Trying to move to the next results page...
+An error occurred: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=146.0.7680.81)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff67e273045+14585]
+	chromedriver!GetHandleVerifier [0x7ff67e2730b0+145f0]
+	chromedriver!(No symbol) [0x7ff67dfddb7d]
+	chromedriver!(No symbol) [0x7ff67dfb4332]
+	chromedriver!(No symbol) [0x7ff67e0678b6]
+	chromedriver!(No symbol) [0x7ff67e083eb2]
+	chromedriver!(No symbol) [0x7ff67e029a18]
+	chromedriver!(No symbol) [0x7ff67e02a8f3]
+	chromedriver!GetHandleVerifier [0x7ff67e57ac5d+31c19d]
+	chromedriver!GetHandleVerifier [0x7ff67e57536d+3168ad]
+	chromedriver!GetHandleVerifier [0x7ff67e597d8a+3392ca]
+	chromedriver!GetHandleVerifier [0x7ff67e28f445+30985]
+	chromedriver!GetHandleVerifier [0x7ff67e2984dc+39a1c]
+	chromedriver!GetHandleVerifier [0x7ff67e27c634+1db74]
+	chromedriver!GetHandleVerifier [0x7ff67e27c7e6+1dd26]
+	chromedriver!GetHandleVerifier [0x7ff67e261387+28c7]
+	KERNEL32!BaseThreadInitThunk [0x7ffad78ce8d7+17]
+	ntdll!RtlUserThreadStart [0x7ffad8d4c48c+2c]
+
+
+Automation finished.
