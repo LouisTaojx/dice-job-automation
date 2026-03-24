@@ -7,7 +7,8 @@ from tkinter import messagebox, scrolledtext, ttk
 from typing import Any
 
 from ..config_manager import (
-    DEFAULT_CREDENTIALS,
+    DEFAULT_DICE_CREDENTIALS,
+    DEFAULT_LINKEDIN_CREDENTIALS,
     get_config_path,
     load_config,
     normalize_keywords,
@@ -32,17 +33,21 @@ class _QueueWriter:
 class AutomationApp(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
-        self.title("Dice Automation Control Center")
-        self.geometry("860x640")
-        self.minsize(760, 560)
+        self.title("Job Automation Control Center")
+        self.geometry("920x760")
+        self.minsize(820, 620)
         self.configure(bg="#f4efe7")
 
         self.log_queue: queue.Queue[str] = queue.Queue()
         self.worker_thread: threading.Thread | None = None
         self.is_running = False
 
-        self.username_var = tk.StringVar()
-        self.password_var = tk.StringVar()
+        self.dice_enabled_var = tk.BooleanVar(value=True)
+        self.linkedin_enabled_var = tk.BooleanVar(value=False)
+        self.dice_username_var = tk.StringVar()
+        self.dice_password_var = tk.StringVar()
+        self.linkedin_username_var = tk.StringVar()
+        self.linkedin_password_var = tk.StringVar()
         self.keyword_var = tk.StringVar()
         self.max_applications_var = tk.StringVar()
         self.status_var = tk.StringVar(value="Ready.")
@@ -109,12 +114,12 @@ class AutomationApp(tk.Tk):
 
         ttk.Label(
             header,
-            text="Dice Automation Control Center",
+            text="LinkedIn + Dice Automation Control Center",
             style="Title.TLabel",
         ).grid(row=0, column=0, sticky="w")
         ttk.Label(
             header,
-            text="Enter your credentials and one or more job titles. The run logs in once, then searches each title with the Easy Apply, Today, and Contract filters.",
+            text="Configure one or both sites, then run a single browser session that logs into each enabled site once and applies across multiple job titles.",
             style="Subtitle.TLabel",
         ).grid(row=1, column=0, sticky="w", pady=(6, 0))
 
@@ -127,21 +132,34 @@ class AutomationApp(tk.Tk):
             row=0, column=0, columnspan=3, sticky="w", pady=(0, 14)
         )
 
-        self._add_field(config_card, 1, "Dice Email", self.username_var)
-        self._add_field(config_card, 2, "Password", self.password_var, show="*")
-        self._add_field(config_card, 3, "Keywords", self.keyword_var)
-        self._add_field(config_card, 4, "Max Applications", self.max_applications_var)
+        ttk.Checkbutton(
+            config_card,
+            text="Run Dice",
+            variable=self.dice_enabled_var,
+        ).grid(row=1, column=0, sticky="w", pady=(0, 6))
+        ttk.Checkbutton(
+            config_card,
+            text="Run LinkedIn",
+            variable=self.linkedin_enabled_var,
+        ).grid(row=1, column=1, sticky="w", pady=(0, 6))
+
+        self._add_field(config_card, 2, "Dice Email", self.dice_username_var)
+        self._add_field(config_card, 3, "Dice Password", self.dice_password_var, show="*")
+        self._add_field(config_card, 4, "LinkedIn Email", self.linkedin_username_var)
+        self._add_field(config_card, 5, "LinkedIn Password", self.linkedin_password_var, show="*")
+        self._add_field(config_card, 6, "Job Titles", self.keyword_var)
+        self._add_field(config_card, 7, "Max Applications / Site", self.max_applications_var)
 
         ttk.Label(
             config_card,
             text=f"Config file: {get_config_path()}",
             style="Body.TLabel",
-        ).grid(row=5, column=0, columnspan=3, sticky="w", pady=(10, 0))
+        ).grid(row=8, column=0, columnspan=3, sticky="w", pady=(10, 0))
         ttk.Label(
             config_card,
-            text="Separate multiple job titles with commas.",
+            text="Separate multiple job titles with commas. LinkedIn uses Easy Apply + Contract + Past 24 hours and skips cards marked Reposted.",
             style="Body.TLabel",
-        ).grid(row=6, column=0, columnspan=3, sticky="w", pady=(6, 0))
+        ).grid(row=9, column=0, columnspan=3, sticky="w", pady=(6, 0))
 
         actions_card = ttk.Frame(container, padding=18, style="Card.TFrame")
         actions_card.grid(row=2, column=0, sticky="ew", pady=(16, 16))
@@ -245,17 +263,25 @@ class AutomationApp(tk.Tk):
         try:
             max_applications = int(self.max_applications_var.get().strip())
         except ValueError as exc:
-            raise ValueError("Max applications must be a whole number.") from exc
+            raise ValueError("Max applications per site must be a whole number.") from exc
 
         if max_applications <= 0:
-            raise ValueError("Max applications must be greater than zero.")
+            raise ValueError("Max applications per site must be greater than zero.")
 
         keywords = normalize_keywords(self.keyword_var.get().strip())
 
         payload = {
-            "credentials": {
-                "username": self.username_var.get().strip(),
-                "password": self.password_var.get().strip(),
+            "dice_credentials": {
+                "username": self.dice_username_var.get().strip(),
+                "password": self.dice_password_var.get().strip(),
+            },
+            "linkedin_credentials": {
+                "username": self.linkedin_username_var.get().strip(),
+                "password": self.linkedin_password_var.get().strip(),
+            },
+            "site_settings": {
+                "dice_enabled": bool(self.dice_enabled_var.get()),
+                "linkedin_enabled": bool(self.linkedin_enabled_var.get()),
             },
             "search_settings": {
                 "keyword": keywords[0] if keywords else self.keyword_var.get().strip(),
@@ -265,17 +291,31 @@ class AutomationApp(tk.Tk):
         }
 
         if require_ready_values:
-            if not payload["credentials"]["username"]:
-                raise ValueError("Enter your Dice email before starting.")
-            if not payload["credentials"]["password"]:
-                raise ValueError("Enter your Dice password before starting.")
+            if not payload["site_settings"]["dice_enabled"] and not payload["site_settings"]["linkedin_enabled"]:
+                raise ValueError("Enable Dice and/or LinkedIn before starting.")
+
             if not payload["search_settings"]["keywords"]:
                 raise ValueError("Enter at least one search keyword before starting.")
 
-            if payload["credentials"]["username"] == DEFAULT_CREDENTIALS["username"]:
-                raise ValueError("Replace the placeholder email before starting.")
-            if payload["credentials"]["password"] == DEFAULT_CREDENTIALS["password"]:
-                raise ValueError("Replace the placeholder password before starting.")
+            if payload["site_settings"]["dice_enabled"]:
+                if not payload["dice_credentials"]["username"]:
+                    raise ValueError("Enter your Dice email before starting.")
+                if not payload["dice_credentials"]["password"]:
+                    raise ValueError("Enter your Dice password before starting.")
+                if payload["dice_credentials"]["username"] == DEFAULT_DICE_CREDENTIALS["username"]:
+                    raise ValueError("Replace the Dice placeholder email before starting.")
+                if payload["dice_credentials"]["password"] == DEFAULT_DICE_CREDENTIALS["password"]:
+                    raise ValueError("Replace the Dice placeholder password before starting.")
+
+            if payload["site_settings"]["linkedin_enabled"]:
+                if not payload["linkedin_credentials"]["username"]:
+                    raise ValueError("Enter your LinkedIn email before starting.")
+                if not payload["linkedin_credentials"]["password"]:
+                    raise ValueError("Enter your LinkedIn password before starting.")
+                if payload["linkedin_credentials"]["username"] == DEFAULT_LINKEDIN_CREDENTIALS["username"]:
+                    raise ValueError("Replace the LinkedIn placeholder email before starting.")
+                if payload["linkedin_credentials"]["password"] == DEFAULT_LINKEDIN_CREDENTIALS["password"]:
+                    raise ValueError("Replace the LinkedIn placeholder password before starting.")
 
         return payload
 
@@ -287,8 +327,10 @@ class AutomationApp(tk.Tk):
             return False
 
         save_config(
-            payload["credentials"],
+            payload["dice_credentials"],
+            payload["linkedin_credentials"],
             payload["search_settings"],
+            payload["site_settings"],
         )
         self.status_var.set("Settings saved to config.py.")
 
@@ -299,8 +341,12 @@ class AutomationApp(tk.Tk):
 
     def _load_config(self) -> None:
         config_data = load_config()
-        self.username_var.set(str(config_data["credentials"]["username"]))
-        self.password_var.set(str(config_data["credentials"]["password"]))
+        self.dice_enabled_var.set(bool(config_data["site_settings"]["dice_enabled"]))
+        self.linkedin_enabled_var.set(bool(config_data["site_settings"]["linkedin_enabled"]))
+        self.dice_username_var.set(str(config_data["dice_credentials"]["username"]))
+        self.dice_password_var.set(str(config_data["dice_credentials"]["password"]))
+        self.linkedin_username_var.set(str(config_data["linkedin_credentials"]["username"]))
+        self.linkedin_password_var.set(str(config_data["linkedin_credentials"]["password"]))
         self.keyword_var.set(", ".join(config_data["search_settings"]["keywords"]))
         self.max_applications_var.set(str(config_data["search_settings"]["max_applications"]))
         self.status_var.set("Loaded settings from config.py.")
@@ -322,8 +368,10 @@ class AutomationApp(tk.Tk):
             return
 
         save_config(
-            payload["credentials"],
+            payload["dice_credentials"],
+            payload["linkedin_credentials"],
             payload["search_settings"],
+            payload["site_settings"],
         )
 
         self._clear_log()

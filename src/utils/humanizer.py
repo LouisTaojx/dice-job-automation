@@ -38,6 +38,9 @@ class Humanizer:
         time.sleep(duration)
         return duration
 
+    def micro_pause(self) -> float:
+        return self.sleep(0.08, 0.18)
+
     def short_pause(self) -> float:
         return self.sleep(0.2, 0.5)
 
