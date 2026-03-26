@@ -6,7 +6,7 @@ from src.runner import run_automation
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Dice job automation launcher")
+    parser = argparse.ArgumentParser(description="Job automation launcher")
     parser.add_argument(
         "--run",
         action="store_true",

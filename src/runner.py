@@ -4,18 +4,19 @@ from typing import Any
 
 from .automation import DiceAutomation
 from .config_manager import load_config
-from .linkedin_automation import LinkedInAutomation
 from .utils.webdriver_setup import setup_driver
+from .zoho_mail_automation import ZohoMailAutomation
 
 
 def run_automation(config_data: dict[str, dict[str, Any]] | None = None) -> None:
     active_config = config_data or load_config()
     dice_credentials = active_config.get("dice_credentials", active_config.get("credentials", {}))
-    linkedin_credentials = active_config.get("linkedin_credentials", {})
+    zoho_credentials = active_config.get("zoho_credentials", {})
+    zoho_mail_settings = active_config.get("zoho_mail_settings", {})
     search_settings = active_config["search_settings"]
     site_settings = active_config.get(
         "site_settings",
-        {"dice_enabled": True, "linkedin_enabled": False},
+        {"dice_enabled": True, "zoho_mail_enabled": False},
     )
 
     driver = None
@@ -37,22 +38,21 @@ def run_automation(config_data: dict[str, dict[str, Any]] | None = None) -> None
                 ),
             ))
 
-        if bool(site_settings.get("linkedin_enabled", False)):
+        if bool(site_settings.get("zoho_mail_enabled", False)):
             automations.append((
-                "LinkedIn",
-                LinkedInAutomation(
+                "Zoho Mail",
+                ZohoMailAutomation(
                     driver=driver,
                     wait=wait,
-                    username=str(linkedin_credentials.get("username", "")),
-                    password=str(linkedin_credentials.get("password", "")),
-                    keywords=search_settings.get("keywords", search_settings.get("keyword", "")),
-                    max_applications=int(search_settings.get("max_applications", 0)),
+                    username=str(zoho_credentials.get("username", "")),
+                    password=str(zoho_credentials.get("password", "")),
+                    recipient_emails=zoho_mail_settings.get("recipient_emails", []),
                     humanizer=humanizer,
                 ),
             ))
 
         if not automations:
-            raise ValueError("No job sites are enabled. Enable Dice and/or LinkedIn before starting.")
+            raise ValueError("No automations are enabled. Enable Dice and/or Zoho Mail before starting.")
 
         for site_name, automation in automations:
             print(f"\n=== Starting {site_name} automation ===")

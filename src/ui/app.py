@@ -8,9 +8,10 @@ from typing import Any
 
 from ..config_manager import (
     DEFAULT_DICE_CREDENTIALS,
-    DEFAULT_LINKEDIN_CREDENTIALS,
+    DEFAULT_SEARCH_SETTINGS,
     get_config_path,
     load_config,
+    normalize_email_addresses,
     normalize_keywords,
     save_config,
 )
@@ -33,9 +34,9 @@ class _QueueWriter:
 class AutomationApp(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
-        self.title("Job Automation Control Center")
-        self.geometry("920x760")
-        self.minsize(820, 620)
+        self.title("Dice + Zoho Mail Automation Control Center")
+        self.geometry("920x680")
+        self.minsize(820, 560)
         self.configure(bg="#f4efe7")
 
         self.log_queue: queue.Queue[str] = queue.Queue()
@@ -43,14 +44,15 @@ class AutomationApp(tk.Tk):
         self.is_running = False
 
         self.dice_enabled_var = tk.BooleanVar(value=True)
-        self.linkedin_enabled_var = tk.BooleanVar(value=False)
+        self.zoho_mail_enabled_var = tk.BooleanVar(value=False)
         self.dice_username_var = tk.StringVar()
         self.dice_password_var = tk.StringVar()
-        self.linkedin_username_var = tk.StringVar()
-        self.linkedin_password_var = tk.StringVar()
+        self.zoho_username_var = tk.StringVar()
+        self.zoho_password_var = tk.StringVar()
         self.keyword_var = tk.StringVar()
         self.max_applications_var = tk.StringVar()
         self.status_var = tk.StringVar(value="Ready.")
+        self.zoho_recipients_input: scrolledtext.ScrolledText | None = None
 
         self._configure_style()
         self._build_layout()
@@ -68,6 +70,7 @@ class AutomationApp(tk.Tk):
         self.option_add("*Font", ("Segoe UI", 10))
         style.configure("Shell.TFrame", background="#f4efe7")
         style.configure("Card.TFrame", background="#fffaf4")
+        style.configure("NotebookShell.TFrame", background="#fffaf4")
         style.configure(
             "Title.TLabel",
             background="#f4efe7",
@@ -101,72 +104,38 @@ class AutomationApp(tk.Tk):
             font=("Segoe UI", 10, "bold"),
             padding=(12, 8),
         )
+        style.configure("Automation.TNotebook", background="#fffaf4", borderwidth=0, tabmargins=(0, 0, 0, 0))
+        style.configure(
+            "Automation.TNotebook.Tab",
+            padding=(16, 8),
+            background="#e7ddd0",
+            foreground="#5b6470",
+        )
+        style.map(
+            "Automation.TNotebook.Tab",
+            background=[("selected", "#fffaf4")],
+            foreground=[("selected", "#16324f")],
+            expand=[("selected", [1, 1, 1, 0])],
+        )
 
     def _build_layout(self) -> None:
         container = ttk.Frame(self, padding=20, style="Shell.TFrame")
         container.pack(fill="both", expand=True)
         container.columnconfigure(0, weight=1)
-        container.rowconfigure(3, weight=1)
+        container.rowconfigure(2, weight=1)
 
-        header = ttk.Frame(container, style="Shell.TFrame")
-        header.grid(row=0, column=0, sticky="ew", pady=(0, 16))
-        header.columnconfigure(0, weight=1)
+        toolbar = ttk.Frame(container, style="Shell.TFrame")
+        toolbar.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        toolbar.columnconfigure(0, weight=1)
 
         ttk.Label(
-            header,
-            text="LinkedIn + Dice Automation Control Center",
-            style="Title.TLabel",
+            toolbar,
+            textvariable=self.status_var,
+            style="Status.TLabel",
         ).grid(row=0, column=0, sticky="w")
-        ttk.Label(
-            header,
-            text="Configure one or both sites, then run a single browser session that logs into each enabled site once and applies across multiple job titles.",
-            style="Subtitle.TLabel",
-        ).grid(row=1, column=0, sticky="w", pady=(6, 0))
 
-        config_card = ttk.Frame(container, padding=18, style="Card.TFrame")
-        config_card.grid(row=1, column=0, sticky="nsew")
-        config_card.columnconfigure(1, weight=1)
-        config_card.columnconfigure(2, weight=0)
-
-        ttk.Label(config_card, text="Configuration", style="CardTitle.TLabel").grid(
-            row=0, column=0, columnspan=3, sticky="w", pady=(0, 14)
-        )
-
-        ttk.Checkbutton(
-            config_card,
-            text="Run Dice",
-            variable=self.dice_enabled_var,
-        ).grid(row=1, column=0, sticky="w", pady=(0, 6))
-        ttk.Checkbutton(
-            config_card,
-            text="Run LinkedIn",
-            variable=self.linkedin_enabled_var,
-        ).grid(row=1, column=1, sticky="w", pady=(0, 6))
-
-        self._add_field(config_card, 2, "Dice Email", self.dice_username_var)
-        self._add_field(config_card, 3, "Dice Password", self.dice_password_var, show="*")
-        self._add_field(config_card, 4, "LinkedIn Email", self.linkedin_username_var)
-        self._add_field(config_card, 5, "LinkedIn Password", self.linkedin_password_var, show="*")
-        self._add_field(config_card, 6, "Job Titles", self.keyword_var)
-        self._add_field(config_card, 7, "Max Applications / Site", self.max_applications_var)
-
-        ttk.Label(
-            config_card,
-            text=f"Config file: {get_config_path()}",
-            style="Body.TLabel",
-        ).grid(row=8, column=0, columnspan=3, sticky="w", pady=(10, 0))
-        ttk.Label(
-            config_card,
-            text="Separate multiple job titles with commas. LinkedIn uses Easy Apply + Contract + Past 24 hours and skips cards marked Reposted.",
-            style="Body.TLabel",
-        ).grid(row=9, column=0, columnspan=3, sticky="w", pady=(6, 0))
-
-        actions_card = ttk.Frame(container, padding=18, style="Card.TFrame")
-        actions_card.grid(row=2, column=0, sticky="ew", pady=(16, 16))
-        actions_card.columnconfigure(1, weight=1)
-
-        button_bar = ttk.Frame(actions_card, style="Card.TFrame")
-        button_bar.grid(row=0, column=0, sticky="w")
+        button_bar = ttk.Frame(toolbar, style="Shell.TFrame")
+        button_bar.grid(row=0, column=1, sticky="e")
 
         self.save_button = ttk.Button(
             button_bar,
@@ -191,14 +160,28 @@ class AutomationApp(tk.Tk):
         )
         self.start_button.grid(row=0, column=2)
 
-        ttk.Label(
-            actions_card,
-            textvariable=self.status_var,
-            style="Status.TLabel",
-        ).grid(row=0, column=1, sticky="e")
+        notebook_card = ttk.Frame(container, padding=18, style="Card.TFrame")
+        notebook_card.grid(row=1, column=0, sticky="ew")
+        notebook_card.columnconfigure(0, weight=1)
+        notebook_card.rowconfigure(0, weight=1)
+
+        notebook = ttk.Notebook(notebook_card, style="Automation.TNotebook")
+        notebook.grid(row=0, column=0, sticky="ew")
+
+        dice_page = ttk.Frame(notebook, padding=18, style="NotebookShell.TFrame")
+        dice_page.columnconfigure(1, weight=1)
+        dice_page.columnconfigure(2, weight=0)
+        self._build_dice_page(dice_page)
+        notebook.add(dice_page, text="Dice Auto Apply")
+
+        zoho_page = ttk.Frame(notebook, padding=18, style="NotebookShell.TFrame")
+        zoho_page.columnconfigure(1, weight=1)
+        zoho_page.columnconfigure(2, weight=0)
+        self._build_zoho_page(zoho_page)
+        notebook.add(zoho_page, text="Send Email")
 
         log_card = ttk.Frame(container, padding=18, style="Card.TFrame")
-        log_card.grid(row=3, column=0, sticky="nsew")
+        log_card.grid(row=2, column=0, sticky="nsew", pady=(16, 0))
         log_card.columnconfigure(0, weight=1)
         log_card.rowconfigure(1, weight=1)
 
@@ -219,6 +202,54 @@ class AutomationApp(tk.Tk):
         self.log_output.grid(row=1, column=0, sticky="nsew")
         self.log_output.configure(state="disabled")
 
+    def _build_dice_page(self, parent: ttk.Frame) -> None:
+        ttk.Label(parent, text="Dice Auto Apply", style="CardTitle.TLabel").grid(
+            row=0, column=0, columnspan=3, sticky="w"
+        )
+
+        ttk.Checkbutton(
+            parent,
+            text="Enable Dice Auto Apply",
+            variable=self.dice_enabled_var,
+        ).grid(row=1, column=0, columnspan=3, sticky="w", pady=(10, 6))
+
+        self._add_field(parent, 2, "Dice Email", self.dice_username_var)
+        self._add_field(parent, 3, "Dice Password", self.dice_password_var, show="*")
+        self._add_field(parent, 4, "Job Titles", self.keyword_var)
+        self._add_field(parent, 5, "Max Dice Applications", self.max_applications_var)
+
+        ttk.Label(
+            parent,
+            text="Separate multiple Dice job titles with commas.",
+            style="Body.TLabel",
+        ).grid(row=6, column=0, columnspan=3, sticky="w", pady=(10, 0))
+
+    def _build_zoho_page(self, parent: ttk.Frame) -> None:
+        ttk.Label(parent, text="Send Email", style="CardTitle.TLabel").grid(
+            row=0, column=0, columnspan=3, sticky="w"
+        )
+
+        ttk.Checkbutton(
+            parent,
+            text="Enable Send Email",
+            variable=self.zoho_mail_enabled_var,
+        ).grid(row=1, column=0, columnspan=3, sticky="w", pady=(10, 6))
+
+        self._add_field(parent, 2, "Zoho Email", self.zoho_username_var)
+        self._add_field(parent, 3, "Zoho Password", self.zoho_password_var, show="*")
+        self.zoho_recipients_input = self._add_multiline_field(
+            parent,
+            4,
+            "Recipient Emails",
+            height=6,
+        )
+
+        ttk.Label(
+            parent,
+            text="Enter one email per line. The sender trims spaces, opens New Mail, inserts your only template, fills the address, and sends it.",
+            style="Body.TLabel",
+        ).grid(row=5, column=0, columnspan=3, sticky="w", pady=(10, 0))
+
     def _add_field(
         self,
         parent: ttk.Frame,
@@ -237,6 +268,40 @@ class AutomationApp(tk.Tk):
         ttk.Entry(parent, **entry_kwargs).grid(
             row=row_index, column=1, columnspan=2, sticky="ew", pady=6
         )
+
+    def _add_multiline_field(
+        self,
+        parent: ttk.Frame,
+        row_index: int,
+        label: str,
+        height: int = 5,
+    ) -> scrolledtext.ScrolledText:
+        ttk.Label(parent, text=label, style="Body.TLabel").grid(
+            row=row_index, column=0, sticky="nw", padx=(0, 12), pady=6
+        )
+        text_widget = scrolledtext.ScrolledText(
+            parent,
+            wrap="word",
+            height=height,
+            relief="solid",
+            borderwidth=1,
+            padx=8,
+            pady=8,
+        )
+        text_widget.grid(row=row_index, column=1, columnspan=2, sticky="ew", pady=6)
+        return text_widget
+
+    def _get_text_widget_value(self, widget: scrolledtext.ScrolledText | None) -> str:
+        if widget is None:
+            return ""
+        return widget.get("1.0", "end-1c")
+
+    def _set_text_widget_value(self, widget: scrolledtext.ScrolledText | None, value: str) -> None:
+        if widget is None:
+            return
+        widget.delete("1.0", "end")
+        if value:
+            widget.insert("1.0", value)
 
     def _append_log(self, message: str) -> None:
         self.log_output.configure(state="normal")
@@ -260,44 +325,53 @@ class AutomationApp(tk.Tk):
         self.log_output.configure(state="disabled")
 
     def _build_config_payload(self, require_ready_values: bool) -> dict[str, dict[str, Any]]:
-        try:
-            max_applications = int(self.max_applications_var.get().strip())
-        except ValueError as exc:
-            raise ValueError("Max applications per site must be a whole number.") from exc
+        max_applications_raw = self.max_applications_var.get().strip()
+        if max_applications_raw:
+            try:
+                max_applications = int(max_applications_raw)
+            except ValueError as exc:
+                raise ValueError("Max Dice applications must be a whole number.") from exc
+        else:
+            max_applications = DEFAULT_SEARCH_SETTINGS["max_applications"]
 
         if max_applications <= 0:
-            raise ValueError("Max applications per site must be greater than zero.")
+            raise ValueError("Max Dice applications must be greater than zero.")
 
         keywords = normalize_keywords(self.keyword_var.get().strip())
+        recipient_emails = normalize_email_addresses(
+            self._get_text_widget_value(self.zoho_recipients_input)
+        )
 
         payload = {
             "dice_credentials": {
                 "username": self.dice_username_var.get().strip(),
                 "password": self.dice_password_var.get().strip(),
             },
-            "linkedin_credentials": {
-                "username": self.linkedin_username_var.get().strip(),
-                "password": self.linkedin_password_var.get().strip(),
+            "zoho_credentials": {
+                "username": self.zoho_username_var.get().strip(),
+                "password": self.zoho_password_var.get().strip(),
             },
             "site_settings": {
                 "dice_enabled": bool(self.dice_enabled_var.get()),
-                "linkedin_enabled": bool(self.linkedin_enabled_var.get()),
+                "zoho_mail_enabled": bool(self.zoho_mail_enabled_var.get()),
             },
             "search_settings": {
                 "keyword": keywords[0] if keywords else self.keyword_var.get().strip(),
                 "keywords": keywords,
                 "max_applications": max_applications,
             },
+            "zoho_mail_settings": {
+                "recipient_emails": recipient_emails,
+            },
         }
 
         if require_ready_values:
-            if not payload["site_settings"]["dice_enabled"] and not payload["site_settings"]["linkedin_enabled"]:
-                raise ValueError("Enable Dice and/or LinkedIn before starting.")
-
-            if not payload["search_settings"]["keywords"]:
-                raise ValueError("Enter at least one search keyword before starting.")
+            if not payload["site_settings"]["dice_enabled"] and not payload["site_settings"]["zoho_mail_enabled"]:
+                raise ValueError("Enable Dice and/or Zoho Mail before starting.")
 
             if payload["site_settings"]["dice_enabled"]:
+                if not payload["search_settings"]["keywords"]:
+                    raise ValueError("Enter at least one Dice search keyword before starting.")
                 if not payload["dice_credentials"]["username"]:
                     raise ValueError("Enter your Dice email before starting.")
                 if not payload["dice_credentials"]["password"]:
@@ -307,15 +381,9 @@ class AutomationApp(tk.Tk):
                 if payload["dice_credentials"]["password"] == DEFAULT_DICE_CREDENTIALS["password"]:
                     raise ValueError("Replace the Dice placeholder password before starting.")
 
-            if payload["site_settings"]["linkedin_enabled"]:
-                if not payload["linkedin_credentials"]["username"]:
-                    raise ValueError("Enter your LinkedIn email before starting.")
-                if not payload["linkedin_credentials"]["password"]:
-                    raise ValueError("Enter your LinkedIn password before starting.")
-                if payload["linkedin_credentials"]["username"] == DEFAULT_LINKEDIN_CREDENTIALS["username"]:
-                    raise ValueError("Replace the LinkedIn placeholder email before starting.")
-                if payload["linkedin_credentials"]["password"] == DEFAULT_LINKEDIN_CREDENTIALS["password"]:
-                    raise ValueError("Replace the LinkedIn placeholder password before starting.")
+            if payload["site_settings"]["zoho_mail_enabled"]:
+                if not payload["zoho_mail_settings"]["recipient_emails"]:
+                    raise ValueError("Enter at least one Zoho recipient email before starting.")
 
         return payload
 
@@ -328,9 +396,10 @@ class AutomationApp(tk.Tk):
 
         save_config(
             payload["dice_credentials"],
-            payload["linkedin_credentials"],
+            payload["zoho_credentials"],
             payload["search_settings"],
             payload["site_settings"],
+            payload["zoho_mail_settings"],
         )
         self.status_var.set("Settings saved to config.py.")
 
@@ -342,13 +411,17 @@ class AutomationApp(tk.Tk):
     def _load_config(self) -> None:
         config_data = load_config()
         self.dice_enabled_var.set(bool(config_data["site_settings"]["dice_enabled"]))
-        self.linkedin_enabled_var.set(bool(config_data["site_settings"]["linkedin_enabled"]))
+        self.zoho_mail_enabled_var.set(bool(config_data["site_settings"]["zoho_mail_enabled"]))
         self.dice_username_var.set(str(config_data["dice_credentials"]["username"]))
         self.dice_password_var.set(str(config_data["dice_credentials"]["password"]))
-        self.linkedin_username_var.set(str(config_data["linkedin_credentials"]["username"]))
-        self.linkedin_password_var.set(str(config_data["linkedin_credentials"]["password"]))
+        self.zoho_username_var.set(str(config_data["zoho_credentials"]["username"]))
+        self.zoho_password_var.set(str(config_data["zoho_credentials"]["password"]))
         self.keyword_var.set(", ".join(config_data["search_settings"]["keywords"]))
         self.max_applications_var.set(str(config_data["search_settings"]["max_applications"]))
+        self._set_text_widget_value(
+            self.zoho_recipients_input,
+            "\n".join(config_data["zoho_mail_settings"]["recipient_emails"]),
+        )
         self.status_var.set("Loaded settings from config.py.")
 
     def _set_controls_enabled(self, enabled: bool) -> None:
@@ -356,6 +429,8 @@ class AutomationApp(tk.Tk):
         self.save_button.configure(state=button_state)
         self.reload_button.configure(state=button_state)
         self.start_button.configure(state=button_state)
+        if self.zoho_recipients_input is not None:
+            self.zoho_recipients_input.configure(state=button_state)
 
     def _start_automation(self) -> None:
         if self.is_running:
@@ -369,9 +444,10 @@ class AutomationApp(tk.Tk):
 
         save_config(
             payload["dice_credentials"],
-            payload["linkedin_credentials"],
+            payload["zoho_credentials"],
             payload["search_settings"],
             payload["site_settings"],
+            payload["zoho_mail_settings"],
         )
 
         self._clear_log()
