@@ -4,6 +4,7 @@ from typing import Any
 
 from .automation import DiceAutomation
 from .config_manager import load_config
+from .log_utils import get_automation_log_path, tee_output_to_path
 from .utils.webdriver_setup import setup_driver
 from .zoho_mail_automation import ZohoMailAutomation
 
@@ -55,8 +56,11 @@ def run_automation(config_data: dict[str, dict[str, Any]] | None = None) -> None
             raise ValueError("No automations are enabled. Enable Dice and/or Zoho Mail before starting.")
 
         for site_name, automation in automations:
-            print(f"\n=== Starting {site_name} automation ===")
-            automation.run()
+            automation_log_path = get_automation_log_path(site_name)
+            with tee_output_to_path(automation_log_path, run_label=f"{site_name} run started"):
+                print(f"\n=== Starting {site_name} automation ===")
+                print(f"Writing {site_name} log to {automation_log_path}")
+                automation.run()
     finally:
         if driver:
             driver.quit()
