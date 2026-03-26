@@ -3,7 +3,6 @@ from __future__ import annotations
 from collections.abc import Iterable
 
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
@@ -677,6 +676,30 @@ class ZohoMailAutomation:
 
         return bool(heading_clicked)
 
+    def _click_template_heading_by_label(self, label: str) -> bool:
+        heading_clicked = self.driver.execute_script(
+            """
+            const desired = (arguments[0] || "").replace(/\\s+/g, " ").trim().toLowerCase();
+            const normalize = (value) => (value || "").replace(/\\s+/g, " ").trim().toLowerCase();
+            const headings = Array.from(document.querySelectorAll(".zm-ins-tmpl__title[role='heading']"));
+            const heading = headings.find((candidate) => normalize(candidate.textContent) === desired);
+
+            if (!heading) {
+                return false;
+            }
+
+            heading.click();
+            return true;
+            """,
+            label,
+        )
+
+        if heading_clicked:
+            print(f"Clicked Zoho template heading '{label}'")
+            self.humanizer.short_pause()
+
+        return bool(heading_clicked)
+
     def _is_template_insert_ready(self) -> bool:
         return self._find_first_visible(
             self.TEMPLATE_INSERT_BUTTON_LOCATORS,
@@ -685,35 +708,21 @@ class ZohoMailAutomation:
 
     def _activate_template_selection(self, label: str, template_row, heading_element) -> bool:
         print(f"Found unique Zoho template: {label}")
-        state = self._get_template_checkbox_state_by_label(label)
-        if not state.get("exists", False):
-            raise Exception(f"Zoho template '{label}' disappeared before selection.")
+        clicked = False
+        try:
+            self._click_element(heading_element, f"Zoho template heading '{label}'")
+            clicked = True
+        except Exception:
+            clicked = self._click_template_heading_by_label(label)
 
-        if state.get("checked", False):
-            print(f"Zoho template checkbox already checked for '{label}'")
-        else:
-            checkbox_checked = self._click_template_checkbox_by_label(label)
-            if not checkbox_checked:
-                try:
-                    ActionChains(self.driver).move_to_element(heading_element).double_click(heading_element).perform()
-                    print(f"Double-clicked Zoho template heading '{label}'")
-                    self.humanizer.short_pause()
-                except Exception:
-                    self._double_click_template_heading_by_label(label)
-                state = self._get_template_checkbox_state_by_label(label)
-                checkbox_checked = state.get("checked", False)
-
-            if not checkbox_checked:
-                checkbox_checked = self._force_template_checkbox_checked_by_label(label)
-
-            if not checkbox_checked:
-                raise Exception(f"Could not check the Zoho template checkbox for '{label}'")
+        if not clicked:
+            raise Exception(f"Could not click the Zoho template heading for '{label}'")
 
         active_wait = type(self.wait)(self.driver, 10)
-        active_wait.until(lambda _driver: self._is_template_insert_ready())
+        active_wait.until(lambda _driver: not self._is_template_dialog_active())
 
-        print(f"Selected Zoho template: {label}")
-        return True
+        print(f"Inserted Zoho template via heading click: {label}")
+        return False
 
     def _focus_recipient_field(self) -> str:
         return str(
@@ -840,13 +849,11 @@ class ZohoMailAutomation:
             last_labels = [label for label, _row, _heading in candidates]
             if len(candidates) == 1:
                 label, template_row, heading_element = candidates[0]
-                should_click_insert = self._activate_template_selection(
+                self._activate_template_selection(
                     label,
                     template_row,
                     heading_element,
                 )
-                if should_click_insert:
-                    self._click_button("Insert", self.TEMPLATE_INSERT_BUTTON_LOCATORS, timeout=10)
                 return label
 
             self.humanizer.short_pause()

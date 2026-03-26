@@ -47,3 +47,95 @@ Automation failed: Zoho Mail finished with failures. ravindra@buzzclan.com: Mess
 ; chetans@pyramidci.com: Message: 
 
 
+
+=== Run started 2026-03-26 11:20:52 ===
+
+=== Starting Zoho Mail automation ===
+Navigating to Zoho Mail...
+Attempting Zoho Mail login...
+Clicked Zoho login next
+Clicked Zoho sign in
+Zoho Mail login completed
+
+Sending Zoho Mail template email 1/3 to ravindra@buzzclan.com...
+Clicked New Mail
+Clicked Options
+Clicked Insert Template
+Found unique Zoho template: Inquiry about Java Developer Opportunities
+Tried to check Zoho template checkbox for 'Inquiry about Java Developer Opportunities'
+Failed to send Zoho Mail to ravindra@buzzclan.com: Could not check the Zoho template checkbox for 'Inquiry about Java Developer Opportunities'
+
+Sending Zoho Mail template email 2/3 to clayton.minnich@avidtr.com...
+Clicked New Mail
+Clicked Options
+Clicked Insert Template
+Failed to send Zoho Mail to clayton.minnich@avidtr.com: No Zoho template option became visible after opening Insert Template.
+
+Sending Zoho Mail template email 3/3 to chetans@pyramidci.com...
+Clicked New Mail
+Clicked Options
+Clicked Insert Template
+Found unique Zoho template: Inquiry about Java Developer Opportunities
+Tried to check Zoho template checkbox for 'Inquiry about Java Developer Opportunities'
+Double-clicked Zoho template heading 'Inquiry about Java Developer Opportunities'
+Forced Zoho template checkbox checked for 'Inquiry about Java Developer Opportunities'
+Failed to send Zoho Mail to chetans@pyramidci.com: Message: 
+
+
+Zoho Mail completed. Sent 0 emails out of 3 recipients.
+
+Automation failed: Zoho Mail finished with failures. ravindra@buzzclan.com: Could not check the Zoho template checkbox for 'Inquiry about Java Developer Opportunities'; clayton.minnich@avidtr.com: No Zoho template option became visible after opening Insert Template.; chetans@pyramidci.com: Message: 
+
+
+
+=== Run started 2026-03-26 11:27:34 ===
+
+=== Starting Zoho Mail automation ===
+Navigating to Zoho Mail...
+Attempting Zoho Mail login...
+Clicked Zoho login next
+Clicked Zoho sign in
+Zoho Mail login completed
+
+Sending Zoho Mail template email 1/3 to ravindra@buzzclan.com...
+Clicked New Mail
+Clicked Options
+Clicked Insert Template
+Found unique Zoho template: Inquiry about Java Developer Opportunities
+Clicked Zoho template heading 'Inquiry about Java Developer Opportunities'
+Inserted Zoho template via heading click: Inquiry about Java Developer Opportunities
+Inserted Zoho template: Inquiry about Java Developer Opportunities
+Focused Zoho recipient field: To Recipients
+Entered recipient email: ravindra@buzzclan.com
+Clicked Send
+Zoho Mail sent successfully to ravindra@buzzclan.com
+
+Sending Zoho Mail template email 2/3 to clayton.minnich@avidtr.com...
+Clicked New Mail
+Clicked Options
+Clicked Insert Template
+Found unique Zoho template: Inquiry about Java Developer Opportunities
+Clicked Zoho template heading 'Inquiry about Java Developer Opportunities'
+Inserted Zoho template via heading click: Inquiry about Java Developer Opportunities
+Inserted Zoho template: Inquiry about Java Developer Opportunities
+Focused Zoho recipient field: To Recipients
+Entered recipient email: clayton.minnich@avidtr.com
+Clicked Send
+Zoho Mail sent successfully to clayton.minnich@avidtr.com
+
+Sending Zoho Mail template email 3/3 to chetans@pyramidci.com...
+Clicked New Mail
+Clicked Options
+Clicked Insert Template
+Found unique Zoho template: Inquiry about Java Developer Opportunities
+Clicked Zoho template heading 'Inquiry about Java Developer Opportunities'
+Inserted Zoho template via heading click: Inquiry about Java Developer Opportunities
+Inserted Zoho template: Inquiry about Java Developer Opportunities
+Focused Zoho recipient field: To Recipients
+Entered recipient email: chetans@pyramidci.com
+Clicked Send
+Zoho Mail sent successfully to chetans@pyramidci.com
+
+Zoho Mail completed. Sent 3 emails out of 3 recipients.
+
+Automation finished.
