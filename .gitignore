@@ -1,6 +1,10 @@
 # Config file with sensitive information
 config.py
 
+# Log files
+log.txt
+send_email_log.txt
+
 # Python
 __pycache__/
 *.py[cod]
