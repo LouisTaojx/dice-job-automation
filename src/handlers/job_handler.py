@@ -1,16 +1,33 @@
+from dataclasses import dataclass
 import time
 
 from selenium.webdriver.common.by import By
 
+from ..job_filters import DiceJobFilter
 from ..utils.humanizer import wait_for_document_ready
 
 
+@dataclass(frozen=True)
+class JobApplicationResult:
+    status: str
+    reason: str = ""
+
+    @property
+    def was_submitted(self) -> bool:
+        return self.status == "applied"
+
+    @property
+    def is_failure(self) -> bool:
+        return self.status == "failed"
+
+
 class JobHandler:
-    def __init__(self, driver, wait, shadow_dom_handler, humanizer):
+    def __init__(self, driver, wait, shadow_dom_handler, humanizer, eligibility_filter=None):
         self.driver = driver
         self.wait = wait
         self.shadow_dom_handler = shadow_dom_handler
         self.humanizer = humanizer
+        self.eligibility_filter = eligibility_filter or DiceJobFilter()
 
     def _page_debug_summary(self):
         try:
@@ -24,6 +41,10 @@ class JobHandler:
             f"Page title: {self.driver.title}\n"
             f"Visible text snippet: {snippet}"
         )
+
+    def _log_application_failure(self, job_title: str, job_url: str, reason: str) -> JobApplicationResult:
+        print(f"Application unsuccessful: {job_title} | {job_url} | {reason}")
+        return JobApplicationResult(status="failed", reason=reason)
 
     def _click_first_available_action(self, actions, timeout=4):
         normalized_actions = [
@@ -149,10 +170,28 @@ class JobHandler:
         return None
 
     def _is_application_complete(self):
+        current_url = ""
+        page_title = ""
         try:
             body_text = self.driver.find_element(By.TAG_NAME, "body").text.lower()
         except Exception:
-            return False
+            body_text = ""
+
+        try:
+            current_url = self.driver.current_url.lower()
+        except Exception:
+            current_url = ""
+
+        try:
+            page_title = self.driver.title.lower()
+        except Exception:
+            page_title = ""
+
+        if "/wizard/success" in current_url:
+            return True
+
+        if "application success" in page_title:
+            return True
 
         success_markers = (
             "application submitted",
@@ -161,10 +200,31 @@ class JobHandler:
             "you have successfully applied",
             "thanks for applying",
             "you've applied",
+            "application success",
+            "your application is on its way",
+            "awesome! your application is on its way",
         )
         return any(marker in body_text for marker in success_markers)
 
     def _has_existing_application(self):
+        current_url = ""
+        page_title = ""
+        try:
+            current_url = self.driver.current_url.lower()
+        except Exception:
+            current_url = ""
+
+        try:
+            page_title = self.driver.title.lower()
+        except Exception:
+            page_title = ""
+
+        if "/wizard/applied" in current_url:
+            return True
+
+        if "already applied" in page_title:
+            return True
+
         exact_terms = ["applied"]
         phrase_terms = [
             "already applied",
@@ -254,13 +314,27 @@ class JobHandler:
                 pass
             self.humanizer.page_pause()
 
+            filter_decision = self.eligibility_filter.evaluate_title_only(job_title)
+            if filter_decision.should_skip:
+                print(
+                    f"Skipping job due to smart filter ({filter_decision.reason}): "
+                    f"{job_title} | {job_url}"
+                )
+                return JobApplicationResult(status="skipped_filtered", reason=filter_decision.reason)
+
             if self._has_existing_application():
                 print(f"Skipping job - already applied: {job_title} | {job_url}")
-                return False
+                return JobApplicationResult(status="skipped_existing", reason="already applied")
 
             if not self.shadow_dom_handler.find_and_click_easy_apply():
-                print(f"Skipping job - Easy Apply / Continue Application was not available: {job_title} | {job_url}")
-                return False
+                if self.shadow_dom_handler.has_applied_status():
+                    print(f"Skipping job - already applied: {job_title} | {job_url}")
+                    return JobApplicationResult(status="skipped_existing", reason="already applied")
+                return self._log_application_failure(
+                    job_title,
+                    job_url,
+                    "Easy Apply / Continue Application was not available",
+                )
 
             self.humanizer.short_pause()
 
@@ -271,9 +345,13 @@ class JobHandler:
             ]
 
             for _ in range(6):
+                if self._has_existing_application():
+                    print(f"Skipping job - already applied: {job_title} | {job_url}")
+                    return JobApplicationResult(status="skipped_existing", reason="already applied")
+
                 if self._is_application_complete():
-                    print(f"Application submitted: {job_title}")
-                    return True
+                    print(f"Application submitted: {job_title} | {job_url}")
+                    return JobApplicationResult(status="applied")
 
                 print("Looking for Next, Review, or Submit button...")
                 clicked_action = self._click_first_available_action(prioritized_actions, timeout=4)
@@ -281,25 +359,42 @@ class JobHandler:
                     continue
                 if clicked_action == "Submit":
                     self.humanizer.page_pause()
-                    if self._is_application_complete() or self._has_existing_application():
-                        print(f"Application submitted: {job_title}")
-                    else:
-                        print(f"Submit clicked for: {job_title}")
-                    return True
+                    confirmation_deadline = time.time() + 6
+                    while time.time() < confirmation_deadline:
+                        if self._is_application_complete() or self._has_existing_application():
+                            print(f"Application submitted: {job_title} | {job_url}")
+                            return JobApplicationResult(status="applied")
+                        time.sleep(0.5)
+
+                    print(f"Submit clicked but no completion marker was found: {job_title} | {job_url}")
+                    print(self._page_debug_summary())
+                    return self._log_application_failure(
+                        job_title,
+                        job_url,
+                        "submit clicked but no completion marker was found",
+                    )
 
                 print("Could not find another application action button.")
                 print(self._page_debug_summary())
-                return False
+                return self._log_application_failure(
+                    job_title,
+                    job_url,
+                    "could not find another application action button",
+                )
 
             print("Reached the maximum number of application steps without finding completion.")
             print(self._page_debug_summary())
-            return False
+            return self._log_application_failure(
+                job_title,
+                job_url,
+                "reached the maximum number of application steps without finding completion",
+            )
 
         except Exception as e:
             message = getattr(e, "msg", str(e)).splitlines()[0]
             print(f"Could not process job: {job_title} | {job_url} | {message}")
             print(self._page_debug_summary())
-            return False
+            return self._log_application_failure(job_title, job_url, message)
         finally:
             print("Closing job tab...")
             self.driver.close()

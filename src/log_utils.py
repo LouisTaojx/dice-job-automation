@@ -41,6 +41,16 @@ def get_automation_log_path(automation_name: str) -> Path:
     return LOG_PATH.parent / filename
 
 
+def clear_log_file(log_path: Path) -> Path:
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text("", encoding="utf-8")
+    return log_path
+
+
+def clear_automation_log(automation_name: str) -> Path:
+    return clear_log_file(get_automation_log_path(automation_name))
+
+
 def _write_run_header(log_file, label: str) -> None:
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log_file.write(f"\n=== {label} {timestamp} ===\n")

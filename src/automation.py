@@ -10,6 +10,7 @@ from selenium.webdriver.common.keys import Keys
 from .handlers.job_handler import JobHandler
 from .handlers.search_filter_handler import SearchAndFilter
 from .handlers.shadow_dom_handler import ShadowDOMHandler
+from .job_filters import DiceJobFilter
 from .utils.humanizer import wait_for_document_ready
 
 
@@ -22,18 +23,8 @@ class DiceAutomation:
         self.search_keywords = self._normalize_keywords(keywords)
         self.max_applications = max_applications
         self.humanizer = humanizer
-        self.title_skip_phrases = (
-            "citizens only",
-            "citizen only",
-            "need citizen",
-            "need citizens",
-            "us citizen",
-            "usc only",
-            "green card",
-            "green-card",
-            "green card holder",
-            "gc holder",
-        )
+        self.job_filter = DiceJobFilter()
+        self.failed_applications: list[dict[str, str]] = []
 
     def _normalize_keywords(self, keywords):
         if isinstance(keywords, str):
@@ -112,13 +103,6 @@ class DiceAutomation:
             f"Page title: {self.driver.title}\n"
             f"Visible text snippet: {snippet}"
         )
-
-    def _blocked_title_phrase(self, title):
-        normalized_title = " ".join(title.lower().split())
-        for phrase in self.title_skip_phrases:
-            if phrase in normalized_title:
-                return phrase
-        return None
 
     def _get_first_listing_url(self):
         try:
@@ -327,6 +311,29 @@ class DiceAutomation:
         print(self._jobs_debug_summary())
         return []
 
+    def _record_failed_application(self, title: str, url: str, reason: str) -> None:
+        normalized_title = title or "Unknown job"
+        normalized_url = url or "URL unavailable"
+        normalized_reason = reason or "unknown error"
+        self.failed_applications.append(
+            {
+                "title": normalized_title,
+                "url": normalized_url,
+                "reason": normalized_reason,
+            }
+        )
+
+    def _print_failed_application_summary(self) -> None:
+        if not self.failed_applications:
+            print("\nDice failure summary: no failed applications were recorded.")
+            return
+
+        print(f"\nDice failure summary: {len(self.failed_applications)} job(s) could not be applied.")
+        for index, failed_job in enumerate(self.failed_applications, start=1):
+            print(
+                f"{index}. {failed_job['title']} | {failed_job['url']} | {failed_job['reason']}"
+            )
+
     def _process_search_results(self, keyword, job_handler, seen_urls, remaining_applications):
         applications_submitted = 0
         jobs_processed = 0
@@ -370,14 +377,19 @@ class DiceAutomation:
                 ):
                     break
 
+                title = "Unknown job"
+                url = ""
                 try:
                     title = listing.get("title", "Unknown job")
                     url = listing.get("url", "")
                     seen_urls.add(url)
 
-                    blocked_phrase = self._blocked_title_phrase(title)
-                    if blocked_phrase:
-                        print(f"Skipping job due to title filter ({blocked_phrase}): {title} | {url}")
+                    title_filter_decision = self.job_filter.evaluate_title_only(title)
+                    if title_filter_decision.should_skip:
+                        print(
+                            f"Skipping job due to smart title filter ({title_filter_decision.reason}): "
+                            f"{title} | {url}"
+                        )
                         jobs_processed += 1
                         continue
 
@@ -386,14 +398,23 @@ class DiceAutomation:
                     self.driver.execute_script("window.open(arguments[0], '_blank');", url)
                     self.humanizer.short_pause()
 
-                    if job_handler.apply_to_job(title, url):
+                    application_result = job_handler.apply_to_job(title, url)
+                    if application_result.was_submitted:
                         applications_submitted += 1
+                    elif application_result.is_failure:
+                        self._record_failed_application(
+                            title,
+                            url,
+                            application_result.reason,
+                        )
 
                     jobs_processed += 1
                     self.humanizer.short_pause()
 
                 except Exception as e:
-                    print(f"Error processing job listing: {str(e)}")
+                    message = str(e)
+                    print(f"Error processing job listing: {message}")
+                    self._record_failed_application(title, url, message)
                     jobs_processed += 1
                     continue
 
@@ -424,7 +445,13 @@ class DiceAutomation:
 
             search_filter = SearchAndFilter(self.driver, self.wait, self.humanizer)
             shadow_dom_handler = ShadowDOMHandler(self.driver, self.wait, self.humanizer)
-            job_handler = JobHandler(self.driver, self.wait, shadow_dom_handler, self.humanizer)
+            job_handler = JobHandler(
+                self.driver,
+                self.wait,
+                shadow_dom_handler,
+                self.humanizer,
+                eligibility_filter=self.job_filter,
+            )
 
             applications_submitted = 0
             jobs_processed = 0
@@ -453,6 +480,8 @@ class DiceAutomation:
                 jobs_processed += keyword_jobs_processed
 
             print(f"\nCompleted! Applied to {applications_submitted} jobs, processed {jobs_processed} listings")
+            self._print_failed_application_summary()
 
         except Exception as e:
             print(f"An error occurred: {str(e)}")
+            self._print_failed_application_summary()

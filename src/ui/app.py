@@ -15,7 +15,7 @@ from ..config_manager import (
     normalize_keywords,
     save_config,
 )
-from ..log_utils import get_log_path, mirrored_output
+from ..log_utils import clear_automation_log, get_log_path, mirrored_output
 from ..runner import run_automation
 
 
@@ -53,9 +53,11 @@ class AutomationApp(tk.Tk):
         self.max_applications_var = tk.StringVar()
         self.status_var = tk.StringVar(value="Ready.")
         self.zoho_recipients_input: scrolledtext.ScrolledText | None = None
+        self.clear_zoho_recipients_on_success = False
 
         self._configure_style()
         self._build_layout()
+        clear_automation_log("Dice")
         self._load_config()
         self.after(100, self._drain_log_queue)
         self.protocol("WM_DELETE_WINDOW", self._handle_close)
@@ -432,6 +434,18 @@ class AutomationApp(tk.Tk):
         if self.zoho_recipients_input is not None:
             self.zoho_recipients_input.configure(state=button_state)
 
+    def _clear_zoho_recipients(self) -> None:
+        self._set_text_widget_value(self.zoho_recipients_input, "")
+        payload = self._build_config_payload(require_ready_values=False)
+        payload["zoho_mail_settings"]["recipient_emails"] = []
+        save_config(
+            payload["dice_credentials"],
+            payload["zoho_credentials"],
+            payload["search_settings"],
+            payload["site_settings"],
+            payload["zoho_mail_settings"],
+        )
+
     def _start_automation(self) -> None:
         if self.is_running:
             return
@@ -455,6 +469,7 @@ class AutomationApp(tk.Tk):
         self._append_log(f"Writing logs to {get_log_path()}\n")
         self._append_log("Launching browser automation...\n\n")
         self.is_running = True
+        self.clear_zoho_recipients_on_success = bool(payload["site_settings"]["zoho_mail_enabled"])
         self._set_controls_enabled(False)
         self.status_var.set("Automation is running...")
 
@@ -488,9 +503,12 @@ class AutomationApp(tk.Tk):
         self.is_running = False
         self._set_controls_enabled(True)
         if succeeded:
+            if self.clear_zoho_recipients_on_success:
+                self._clear_zoho_recipients()
             self.status_var.set("Automation finished.")
         else:
             self.status_var.set("Automation stopped with an error.")
+        self.clear_zoho_recipients_on_success = False
 
     def _handle_close(self) -> None:
         if self.is_running:
